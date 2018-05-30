@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class Insert_pv_form : Form
     {
-        static SqlConnection con = new SqlConnection("Data Source=SYCH-PC;" +
+        static SqlConnection con = new SqlConnection("Data Source=ШАЛАШОВЫ-ПК" + "\\" + "SQLEXPRESS;" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Insert_pv_form()

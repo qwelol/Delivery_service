@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
 
         bool user_type;
-        static SqlConnection con = new SqlConnection("Data Source=SYCH-PC;" +
+        static SqlConnection con = new SqlConnection("Data Source=ШАЛАШОВЫ-ПК"+"\\"+"SQLEXPRESS;" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Main_form(bool user)
