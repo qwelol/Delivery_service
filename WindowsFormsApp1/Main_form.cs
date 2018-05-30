@@ -241,5 +241,17 @@ namespace WindowsFormsApp1
             MessageBox.Show("Успешно удалено", "Удаление",
             MessageBoxButtons.OK, MessageBoxIcon.None);
         }
+
+        private void change_pv_btn_Click(object sender, EventArgs e)
+        {
+            Change_mainpv_form form = new Change_mainpv_form();
+            form.Owner = this;
+            form.ShowDialog();
+        }
+
+        private void cb_city_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
