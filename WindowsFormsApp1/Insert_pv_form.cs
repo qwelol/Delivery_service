@@ -112,5 +112,15 @@ namespace WindowsFormsApp1
                 e.Handled = true;
             }
         }
+
+        private void tb_phone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Insert_pv_form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            con.Close();
+        }
     }
 }

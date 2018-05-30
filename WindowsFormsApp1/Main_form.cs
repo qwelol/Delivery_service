@@ -202,20 +202,30 @@ namespace WindowsFormsApp1
 
         private void pvGrid_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            string a = (pvGrid[3, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
-            string b=a.Substring(a.IndexOf('-') + 1);
-            SqlCommand comm = con.CreateCommand(); //заполнение грида 
-            comm.CommandText = "Update_pv";
-            comm.CommandType = CommandType.StoredProcedure;
-            comm.Parameters.Add("@a", SqlDbType.Int);
-            comm.Parameters["@a"].Value = int.Parse(pvGrid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
-            comm.Parameters.Add("@x", SqlDbType.VarChar);
-            comm.Parameters["@x"].Value = pvGrid[2, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
-            comm.Parameters.Add("@y", SqlDbType.Int);
-            comm.Parameters["@y"].Value = int.Parse(b);
-            comm.Parameters.Add("@z", SqlDbType.VarChar);
-            comm.Parameters["@z"].Value = pvGrid[4, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
-            comm.ExecuteNonQuery();
+            try
+            {
+                string a = (pvGrid[3, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
+                string b = a.Substring(a.IndexOf('-') + 1);
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "Update_pv";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@a", SqlDbType.Int);
+                comm.Parameters["@a"].Value = int.Parse(pvGrid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
+                comm.Parameters.Add("@x", SqlDbType.VarChar);
+                comm.Parameters["@x"].Value = pvGrid[2, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
+                comm.Parameters.Add("@y", SqlDbType.Int);
+                comm.Parameters["@y"].Value = int.Parse(b);
+                comm.Parameters.Add("@z", SqlDbType.VarChar);
+                comm.Parameters["@z"].Value = pvGrid[4, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
+                comm.ExecuteNonQuery();
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Некоректный номер телефона", "Изменение не сохранено",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
         }
 
         private void save_pv_btn_Click(object sender, EventArgs e)
@@ -232,14 +242,22 @@ namespace WindowsFormsApp1
 
         private void del_btn_Click(object sender, EventArgs e)
         {
-            SqlCommand comm = con.CreateCommand(); //заполнение грида 
-            comm.CommandText = "Delete_pv";
-            comm.CommandType = CommandType.StoredProcedure;
-            comm.Parameters.Add("@pynkt", SqlDbType.Int);
-            comm.Parameters["@pynkt"].Value = int.Parse(pvGrid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
-            comm.ExecuteNonQuery();
-            MessageBox.Show("Успешно удалено", "Удаление",
-            MessageBoxButtons.OK, MessageBoxIcon.None);
+            try
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "Delete_pv";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@pynkt", SqlDbType.Int);
+                comm.Parameters["@pynkt"].Value = int.Parse(pvGrid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString());
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Успешно удалено", "Удаление",
+                MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Невозможно удалить пункт выдачи с активными отправлениями", "Удаление невозможно",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void change_pv_btn_Click(object sender, EventArgs e)
@@ -252,6 +270,13 @@ namespace WindowsFormsApp1
         private void cb_city_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Insert_city_form form = new Insert_city_form();
+            form.Owner = this;
+            form.ShowDialog();
         }
     }
 }

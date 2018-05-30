@@ -75,6 +75,7 @@
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Size = new System.Drawing.Size(121, 20);
             this.tb_phone.TabIndex = 3;
+            this.tb_phone.TextChanged += new System.EventHandler(this.tb_phone_TextChanged);
             this.tb_phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_phone_KeyPress);
             // 
             // tb_mphone
@@ -156,7 +157,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Insert_pv_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Insert_pv_form";
+            this.Text = "Delivery service";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Insert_pv_form_FormClosing);
             this.Load += new System.EventHandler(this.Insert_pv_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
