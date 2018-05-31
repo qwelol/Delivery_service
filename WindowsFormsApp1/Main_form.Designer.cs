@@ -68,6 +68,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.adminPage = new System.Windows.Forms.TabPage();
+            this.ch_btn = new System.Windows.Forms.Button();
+            this.tb_value = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.td_cb = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.change_pv_btn = new System.Windows.Forms.Button();
             this.pv_search_btn = new System.Windows.Forms.Button();
             this.del_btn = new System.Windows.Forms.Button();
@@ -81,7 +87,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Insert_city_btn = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.operatorPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -495,7 +501,13 @@
             // 
             // adminPage
             // 
-            this.adminPage.Controls.Add(this.Insert_city_btn);
+            this.adminPage.Controls.Add(this.label18);
+            this.adminPage.Controls.Add(this.ch_btn);
+            this.adminPage.Controls.Add(this.tb_value);
+            this.adminPage.Controls.Add(this.label17);
+            this.adminPage.Controls.Add(this.td_cb);
+            this.adminPage.Controls.Add(this.label16);
+            this.adminPage.Controls.Add(this.label15);
             this.adminPage.Controls.Add(this.change_pv_btn);
             this.adminPage.Controls.Add(this.pv_search_btn);
             this.adminPage.Controls.Add(this.del_btn);
@@ -510,6 +522,66 @@
             this.adminPage.TabIndex = 1;
             this.adminPage.Text = "Администратор";
             this.adminPage.UseVisualStyleBackColor = true;
+            this.adminPage.Click += new System.EventHandler(this.adminPage_Click);
+            // 
+            // ch_btn
+            // 
+            this.ch_btn.Location = new System.Drawing.Point(509, 277);
+            this.ch_btn.Name = "ch_btn";
+            this.ch_btn.Size = new System.Drawing.Size(75, 23);
+            this.ch_btn.TabIndex = 12;
+            this.ch_btn.Text = "Изменить";
+            this.ch_btn.UseVisualStyleBackColor = true;
+            this.ch_btn.Click += new System.EventHandler(this.ch_btn_Click);
+            // 
+            // tb_value
+            // 
+            this.tb_value.Location = new System.Drawing.Point(338, 276);
+            this.tb_value.MaxLength = 10;
+            this.tb_value.Name = "tb_value";
+            this.tb_value.Size = new System.Drawing.Size(100, 20);
+            this.tb_value.TabIndex = 11;
+            this.tb_value.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_value_KeyPress);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(237, 277);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(78, 17);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Стоимость";
+            // 
+            // td_cb
+            // 
+            this.td_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.td_cb.FormattingEnabled = true;
+            this.td_cb.Location = new System.Drawing.Point(20, 275);
+            this.td_cb.Name = "td_cb";
+            this.td_cb.Size = new System.Drawing.Size(121, 21);
+            this.td_cb.TabIndex = 9;
+            this.td_cb.SelectedIndexChanged += new System.EventHandler(this.td_cb_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.Location = new System.Drawing.Point(16, 248);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(138, 24);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "Тип доставки:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(16, 10);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(139, 24);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Пункт выдачи:";
             // 
             // change_pv_btn
             // 
@@ -555,10 +627,10 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(16, 32);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(17, 38);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(66, 24);
+            this.label14.Size = new System.Drawing.Size(48, 17);
             this.label14.TabIndex = 4;
             this.label14.Text = "Город";
             this.label14.Click += new System.EventHandler(this.label14_Click);
@@ -612,7 +684,7 @@
             this.Column2.MaxInputLength = 512;
             this.Column2.MinimumWidth = 100;
             this.Column2.Name = "Column2";
-            this.Column2.Width = 450;
+            this.Column2.Width = 445;
             // 
             // Column3
             // 
@@ -625,7 +697,7 @@
             this.Column4.HeaderText = "Мобильный телефон";
             this.Column4.MinimumWidth = 50;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
+            this.Column4.Width = 190;
             // 
             // contextMenuStrip1
             // 
@@ -633,15 +705,15 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // Insert_city_btn
+            // label18
             // 
-            this.Insert_city_btn.Location = new System.Drawing.Point(321, 207);
-            this.Insert_city_btn.Name = "Insert_city_btn";
-            this.Insert_city_btn.Size = new System.Drawing.Size(214, 39);
-            this.Insert_city_btn.TabIndex = 7;
-            this.Insert_city_btn.Text = "Изменить параметры города";
-            this.Insert_city_btn.UseVisualStyleBackColor = true;
-            this.Insert_city_btn.Click += new System.EventHandler(this.button1_Click);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(16, 308);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(187, 24);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "Весовая категория:";
             // 
             // Main_form
             // 
@@ -720,12 +792,18 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button pv_search_btn;
+        private System.Windows.Forms.Button change_pv_btn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.Button change_pv_btn;
-        private System.Windows.Forms.Button Insert_city_btn;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button ch_btn;
+        private System.Windows.Forms.TextBox tb_value;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox td_cb;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
     }
 }

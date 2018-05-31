@@ -41,12 +41,12 @@ namespace WindowsFormsApp1
             }
             reader.Close();
 
-            fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
+            fill.CommandText = " select [Тип доставки] from[Тип доставки] ORDER BY [Код доставки] ";
             //запрос можно запихнуть в ХП 
             SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
             while (reader1.Read())
             {
-                cb_veight.Items.Add(reader1["Название"].ToString());
+                td_cb.Items.Add(reader1["Тип доставки"].ToString());
             }
             reader1.Close();
 
@@ -274,9 +274,58 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Insert_city_form form = new Insert_city_form();
-            form.Owner = this;
-            form.ShowDialog();
+
+        }
+
+        private void adminPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void td_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlCommand comm = con.CreateCommand();  
+            comm.CommandText = "show_value";
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.Parameters.Add("@td", SqlDbType.VarChar);
+            comm.Parameters["@td"].Value = td_cb.Text.ToString();
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                tb_value.Text = reader["Цена"].ToString();
+            }
+            reader.Close();
+        }
+
+        private void tb_value_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ch_btn_Click(object sender, EventArgs e)
+        {
+            if (td_cb.SelectedIndex==-1)
+            {
+                MessageBox.Show("Не выбран тип доставки", "Изменение не сохранено",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           else
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "change_value";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@td", SqlDbType.VarChar);
+                comm.Parameters["@td"].Value = td_cb.Text.ToString();
+                comm.Parameters.Add("@value", SqlDbType.Real);
+                comm.Parameters["@value"].Value = Single.Parse(tb_value.Text.ToString());
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Успешно изменено", "Изменение",
+                MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
         }
     }
 }
