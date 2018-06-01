@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
 
         bool user_type;
-        static SqlConnection con = new SqlConnection("Data Source=ШАЛАШОВЫ-ПК"+"\\"+"SQLEXPRESS;" +
+        static SqlConnection con = new SqlConnection("Data Source=(local);" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Main_form(bool user)
@@ -32,24 +32,18 @@ namespace WindowsFormsApp1
                 adminPage.Parent = null;
 
             }
+            //заполениение типа доставки
             SqlCommand fill = con.CreateCommand(); //создаём команду 
             fill.CommandText = "SELECT [Тип доставки] FROM [Тип доставки] ORDER BY [Код доставки]";//заполнение 
             SqlDataReader reader = fill.ExecuteReader();//открыли ридер 
             while (reader.Read())
             {
-                cb_type.Items.Add(reader["Тип доставки"].ToString());
+                cb_type.Items.Add(reader["Тип доставки"].ToString()); //заполняем сразу 2 поля
+                td_cb.Items.Add(reader["Тип доставки"].ToString());
             }
             reader.Close();
 
-            fill.CommandText = " select [Тип доставки] from[Тип доставки] ORDER BY [Код доставки] ";
-            //запрос можно запихнуть в ХП 
-            SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
-            while (reader1.Read())
-            {
-                td_cb.Items.Add(reader1["Тип доставки"].ToString());
-            }
-            reader1.Close();
-
+            //заполнение города
             fill.CommandText = "SELECT [Название] FROM [Город] ORDER BY [Код города] ";
             //запрос можно запихнуть в ХП 
             SqlDataReader reader2 = fill.ExecuteReader();//открыли ридер 
@@ -59,6 +53,16 @@ namespace WindowsFormsApp1
             }
             reader2.Close();
 
+            //заполнение весовой категории
+            fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
+            //запрос можно запихнуть в ХП 
+            SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
+            while (reader1.Read())
+            {
+                cb_vk.Items.Add(reader1["Название"].ToString());
+            }
+            reader1.Close();
+
             cb_po.Enabled = false;
             cb_pp.Enabled = false;
             refGrid.Enabled = false;
@@ -66,6 +70,7 @@ namespace WindowsFormsApp1
 
         private void Main_form_FormClosed(object sender, FormClosedEventArgs e)
         {
+            con.Close();
             Application.Exit();
         }
 
@@ -315,17 +320,134 @@ namespace WindowsFormsApp1
             }
            else
             {
-                SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                comm.CommandText = "change_value";
+                try
+                {
+                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                    comm.CommandText = "change_value";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@td", SqlDbType.VarChar);
+                    comm.Parameters["@td"].Value = td_cb.Text.ToString();
+                    comm.Parameters.Add("@value", SqlDbType.Real);
+                    comm.Parameters["@value"].Value = Single.Parse(tb_value.Text.ToString());
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Отсутствует значение", "Изменение не сохранено",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void departurePage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cb_vk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand comm = con.CreateCommand();
+                comm.CommandText = "show_VK_charge";
                 comm.CommandType = CommandType.StoredProcedure;
-                comm.Parameters.Add("@td", SqlDbType.VarChar);
-                comm.Parameters["@td"].Value = td_cb.Text.ToString();
+                comm.Parameters.Add("@vk", SqlDbType.VarChar);
+                comm.Parameters["@vk"].Value = cb_vk.Text.ToString();
+                SqlDataReader reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    tb_charhe.Text = reader["Наценка"].ToString();
+                }
+                reader.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Отсутствует значение", "Изменение не сохранено",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void tb_value_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_charhe_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ch_vk_btn_Click(object sender, EventArgs e)
+        {
+            if (cb_vk.SelectedIndex == -1)
+            {
+                MessageBox.Show("Не выбран тип доставки", "Изменение не сохранено",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "change_charge";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@vk", SqlDbType.VarChar);
+                comm.Parameters["@vk"].Value = cb_vk.Text.ToString();
                 comm.Parameters.Add("@value", SqlDbType.Real);
-                comm.Parameters["@value"].Value = Single.Parse(tb_value.Text.ToString());
+                comm.Parameters["@value"].Value = Single.Parse(tb_charhe.Text.ToString());
                 comm.ExecuteNonQuery();
                 MessageBox.Show("Успешно изменено", "Изменение",
                 MessageBoxButtons.OK, MessageBoxIcon.None);
             }
+        }
+
+        private void del_vk_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "del_vk";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@vk", SqlDbType.VarChar);
+                comm.Parameters["@vk"].Value = cb_vk.Text.ToString();
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Успешно удалено", "Удаление",
+                MessageBoxButtons.OK, MessageBoxIcon.None);
+
+                cb_vk.Items.Clear();
+                SqlCommand fill = con.CreateCommand();
+                fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
+                //запрос можно запихнуть в ХП 
+                SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
+                while (reader1.Read())
+                {
+                    cb_vk.Items.Add(reader1["Название"].ToString());
+                }
+                reader1.Close();
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Невозможно удалить весовую категорию с активными отправлениями", "Удаление невозможно",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tb_charhe_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ins_vk_btn_Click(object sender, EventArgs e)
+        {
+            insert_vk_form form = new insert_vk_form();
+            form.Owner = this;
+            form.ShowDialog();
         }
     }
 }

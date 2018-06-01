@@ -68,6 +68,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.adminPage = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
             this.ch_btn = new System.Windows.Forms.Button();
             this.tb_value = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -87,7 +88,14 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label18 = new System.Windows.Forms.Label();
+            this.cb_vk = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tb_charhe = new System.Windows.Forms.TextBox();
+            this.ch_vk_btn = new System.Windows.Forms.Button();
+            this.del_vk_btn = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.ins_vk_btn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.operatorPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -154,6 +162,7 @@
             this.departurePage.TabIndex = 0;
             this.departurePage.Text = "Отправления";
             this.departurePage.UseVisualStyleBackColor = true;
+            this.departurePage.Click += new System.EventHandler(this.departurePage_Click);
             // 
             // label13
             // 
@@ -466,9 +475,13 @@
             // 
             // departureGrid
             // 
+            this.departureGrid.AllowUserToAddRows = false;
+            this.departureGrid.AllowUserToDeleteRows = false;
             this.departureGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.departureGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.departureGrid.Location = new System.Drawing.Point(14, 80);
             this.departureGrid.Name = "departureGrid";
+            this.departureGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.departureGrid.Size = new System.Drawing.Size(596, 188);
             this.departureGrid.TabIndex = 1;
             // 
@@ -501,6 +514,13 @@
             // 
             // adminPage
             // 
+            this.adminPage.Controls.Add(this.ins_vk_btn);
+            this.adminPage.Controls.Add(this.label20);
+            this.adminPage.Controls.Add(this.del_vk_btn);
+            this.adminPage.Controls.Add(this.ch_vk_btn);
+            this.adminPage.Controls.Add(this.tb_charhe);
+            this.adminPage.Controls.Add(this.label19);
+            this.adminPage.Controls.Add(this.cb_vk);
             this.adminPage.Controls.Add(this.label18);
             this.adminPage.Controls.Add(this.ch_btn);
             this.adminPage.Controls.Add(this.tb_value);
@@ -524,6 +544,16 @@
             this.adminPage.UseVisualStyleBackColor = true;
             this.adminPage.Click += new System.EventHandler(this.adminPage_Click);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(16, 308);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(187, 24);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "Весовая категория:";
+            // 
             // ch_btn
             // 
             this.ch_btn.Location = new System.Drawing.Point(509, 277);
@@ -541,6 +571,7 @@
             this.tb_value.Name = "tb_value";
             this.tb_value.Size = new System.Drawing.Size(100, 20);
             this.tb_value.TabIndex = 11;
+            this.tb_value.TextChanged += new System.EventHandler(this.tb_value_TextChanged);
             this.tb_value.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_value_KeyPress);
             // 
             // label17
@@ -656,6 +687,7 @@
             this.Column3,
             this.Column4});
             this.pvGrid.Location = new System.Drawing.Point(20, 70);
+            this.pvGrid.MultiSelect = false;
             this.pvGrid.Name = "pvGrid";
             this.pvGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.pvGrid.Size = new System.Drawing.Size(936, 117);
@@ -675,7 +707,6 @@
             this.Column1.HeaderText = "Город";
             this.Column1.MinimumWidth = 50;
             this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             this.Column1.Width = 140;
             // 
             // Column2
@@ -705,15 +736,80 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // label18
+            // cb_vk
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(16, 308);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(187, 24);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "Весовая категория:";
+            this.cb_vk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_vk.FormattingEnabled = true;
+            this.cb_vk.Location = new System.Drawing.Point(20, 349);
+            this.cb_vk.Name = "cb_vk";
+            this.cb_vk.Size = new System.Drawing.Size(121, 21);
+            this.cb_vk.TabIndex = 14;
+            this.cb_vk.SelectedIndexChanged += new System.EventHandler(this.cb_vk_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(237, 350);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 17);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "Наценка";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // tb_charhe
+            // 
+            this.tb_charhe.Location = new System.Drawing.Point(338, 349);
+            this.tb_charhe.MaxLength = 2;
+            this.tb_charhe.Name = "tb_charhe";
+            this.tb_charhe.Size = new System.Drawing.Size(100, 20);
+            this.tb_charhe.TabIndex = 16;
+            this.tb_charhe.TextChanged += new System.EventHandler(this.tb_charhe_TextChanged);
+            this.tb_charhe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_charhe_KeyPress);
+            // 
+            // ch_vk_btn
+            // 
+            this.ch_vk_btn.Location = new System.Drawing.Point(509, 349);
+            this.ch_vk_btn.Name = "ch_vk_btn";
+            this.ch_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.ch_vk_btn.TabIndex = 17;
+            this.ch_vk_btn.Text = "Изменить";
+            this.ch_vk_btn.UseVisualStyleBackColor = true;
+            this.ch_vk_btn.Click += new System.EventHandler(this.ch_vk_btn_Click);
+            // 
+            // del_vk_btn
+            // 
+            this.del_vk_btn.Location = new System.Drawing.Point(881, 350);
+            this.del_vk_btn.Name = "del_vk_btn";
+            this.del_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.del_vk_btn.TabIndex = 18;
+            this.del_vk_btn.Text = "Удалить";
+            this.del_vk_btn.UseVisualStyleBackColor = true;
+            this.del_vk_btn.Click += new System.EventHandler(this.del_vk_btn_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(16, 417);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(71, 24);
+            this.label20.TabIndex = 19;
+            this.label20.Text = "Город:";
+            // 
+            // ins_vk_btn
+            // 
+            this.ins_vk_btn.Location = new System.Drawing.Point(764, 350);
+            this.ins_vk_btn.Name = "ins_vk_btn";
+            this.ins_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.ins_vk_btn.TabIndex = 20;
+            this.ins_vk_btn.Text = "Добавить";
+            this.ins_vk_btn.UseVisualStyleBackColor = true;
+            this.ins_vk_btn.Click += new System.EventHandler(this.ins_vk_btn_Click);
             // 
             // Main_form
             // 
@@ -805,5 +901,13 @@
         private System.Windows.Forms.ComboBox td_cb;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button del_vk_btn;
+        private System.Windows.Forms.Button ch_vk_btn;
+        private System.Windows.Forms.TextBox tb_charhe;
+        private System.Windows.Forms.Label label19;
+        public System.Windows.Forms.ComboBox cb_vk;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Button ins_vk_btn;
+        private System.Windows.Forms.Label label20;
     }
 }

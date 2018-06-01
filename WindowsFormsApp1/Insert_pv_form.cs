@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class Insert_pv_form : Form
     {
-        static SqlConnection con = new SqlConnection("Data Source=ШАЛАШОВЫ-ПК" + "\\" + "SQLEXPRESS;" +
+        static SqlConnection con = new SqlConnection("Data Source=(local);" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Insert_pv_form()
@@ -61,35 +61,44 @@ namespace WindowsFormsApp1
 
         private void insert_btn_Click(object sender, EventArgs e)
         {
-            if ((tb_mphone.Text[0]=='+') && (tb_mphone.Text[1] == '7') && (tb_mphone.Text.Length==12))
+            try
             {
-                if (tb_phone.Text.Length == 5)
+                if ((tb_mphone.Text[0] == '+') && (tb_mphone.Text[1] == '7') && (tb_mphone.Text.Length == 12))
                 {
-                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                    comm.CommandText = "Insert_pv";
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.Add("@city", SqlDbType.VarChar);
-                    comm.Parameters["@city"].Value = cb_city.Text.ToString();
-                    comm.Parameters.Add("@x", SqlDbType.VarChar);
-                    comm.Parameters["@x"].Value = tb_adr.Text.ToString();
-                    comm.Parameters.Add("@y", SqlDbType.Int);
-                    comm.Parameters["@y"].Value = int.Parse(tb_phone.Text.ToString());
-                    comm.Parameters.Add("@z", SqlDbType.VarChar);
-                    comm.Parameters["@z"].Value = tb_mphone.Text.ToString();
-                    comm.ExecuteNonQuery();
-                    MessageBox.Show("Успешно добавлено", "Добавление",
-                    MessageBoxButtons.OK, MessageBoxIcon.None);
-                    this.Close();
+                    if (tb_phone.Text.Length == 5)
+                    {
+                        SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                        comm.CommandText = "Insert_pv";
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.Parameters.Add("@city", SqlDbType.VarChar);
+                        comm.Parameters["@city"].Value = cb_city.Text.ToString();
+                        comm.Parameters.Add("@x", SqlDbType.VarChar);
+                        comm.Parameters["@x"].Value = tb_adr.Text.ToString();
+                        comm.Parameters.Add("@y", SqlDbType.Int);
+                        comm.Parameters["@y"].Value = int.Parse(tb_phone.Text.ToString());
+                        comm.Parameters.Add("@z", SqlDbType.VarChar);
+                        comm.Parameters["@z"].Value = tb_mphone.Text.ToString();
+                        comm.ExecuteNonQuery();
+                        MessageBox.Show("Успешно добавлено", "Добавление",
+                        MessageBoxButtons.OK, MessageBoxIcon.None);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неккоректное значение номера телефона", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Неккоректное значение номера телефона", "Ошибка",
+                    MessageBox.Show("Неккоректное значение номера мобильного телефона", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
-            else
+            catch(System.IndexOutOfRangeException)
             {
-                MessageBox.Show("Неккоректное значение номера мобильного телефона", "Ошибка",
+                MessageBox.Show("Поля не заполнены", "Ошибка",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

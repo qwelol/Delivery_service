@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class Change_mainpv_form : Form
     {
-        static SqlConnection con = new SqlConnection("Data Source=ШАЛАШОВЫ-ПК" + "\\" + "SQLEXPRESS;" +
+        static SqlConnection con = new SqlConnection("Data Source=(local);" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Change_mainpv_form()
