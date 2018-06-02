@@ -43,16 +43,6 @@ namespace WindowsFormsApp1
             }
             reader.Close();
 
-            //заполнение города
-            fill.CommandText = "SELECT [Название] FROM [Город] ORDER BY [Код города] ";
-            //запрос можно запихнуть в ХП 
-            SqlDataReader reader2 = fill.ExecuteReader();//открыли ридер 
-            while (reader2.Read())
-            {
-                cb_city.Items.Add(reader2["Название"].ToString());
-            }
-            reader2.Close();
-
             //заполнение весовой категории
             fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
             //запрос можно запихнуть в ХП 
@@ -62,6 +52,22 @@ namespace WindowsFormsApp1
                 cb_vk.Items.Add(reader1["Название"].ToString());
             }
             reader1.Close();
+
+            //заполение ВСЕХ полей с городами
+            SqlCommand comm = con.CreateCommand();
+            comm.CommandText = "show_city";
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader_city = comm.ExecuteReader();
+            while (reader_city.Read())
+            {
+                city_grid.Rows.Add(
+                reader_city["Название"].ToString(),
+                reader_city["Область"].ToString(),
+                reader_city["Телефонный код"].ToString()
+                );
+                cb_city.Items.Add(reader_city["Название"].ToString());
+            }
+            reader_city.Close();
 
             cb_po.Enabled = false;
             cb_pp.Enabled = false;
@@ -448,6 +454,139 @@ namespace WindowsFormsApp1
             insert_vk_form form = new insert_vk_form();
             form.Owner = this;
             form.ShowDialog();
+        }
+
+        private void del_city_btn_Click(object sender, EventArgs e)
+        {
+            SqlCommand comm = con.CreateCommand();
+            try
+            {
+                comm.CommandText = "del_city";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@city", SqlDbType.VarChar);
+                comm.Parameters["@city"].Value = city_grid[0, int.Parse(city_grid.CurrentRow.Index.ToString())].Value.ToString();
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Успешно удалено", "Удаление",
+                MessageBoxButtons.OK, MessageBoxIcon.None);
+                refresh_city();
+
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Невозможно удалить город, в котором имеются пункты выдачи", "Удаление невозможно",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void ins_city_btn_Click(object sender, EventArgs e)
+        {
+            insert_city_form form = new insert_city_form();
+            form.Owner = this;
+            form.ShowDialog();
+        }
+        public void refresh_city ()
+        {
+            SqlCommand comm = con.CreateCommand();
+            comm.Parameters.Clear();
+            cb_city.Items.Clear();
+            city_grid.Rows.Clear();
+
+            comm.CommandText = "show_city";
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader_city = comm.ExecuteReader();
+            while (reader_city.Read())
+            {
+                city_grid.Rows.Add(
+                reader_city["Название"].ToString(),
+                reader_city["Область"].ToString(),
+                reader_city["Телефонный код"].ToString()
+                );
+                cb_city.Items.Add(reader_city["Название"].ToString());
+            }
+            reader_city.Close();
+        }
+
+        private void searh_btn_Click(object sender, EventArgs e)
+        {
+            if (rb_fam.Checked == true)
+            {
+                client_grid.Rows.Clear();
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "Search_client_fam";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@fam", SqlDbType.VarChar);
+                comm.Parameters["@fam"].Value = tb_fam.Text.ToString();
+                SqlDataReader reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    client_grid.Rows.Add(
+                    reader["Номер телефона"].ToString(),
+                    reader["Номер паспорта"].ToString(),
+                    reader["Фамилия"].ToString(),
+                    reader["Имя"].ToString(),
+                    reader["Отчество"].ToString(),
+                    reader["Электронная почта"].ToString(),
+                    reader["Адрес"].ToString()
+                    );
+                }
+                reader.Close();
+            }
+            else
+            {
+                        client_grid.Rows.Clear();
+                        SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                        comm.CommandText = "Search_client_phone";
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.Parameters.Add("@phone", SqlDbType.VarChar);
+                        comm.Parameters["@phone"].Value = tb_phone.Text.ToString();
+                        SqlDataReader reader1 = comm.ExecuteReader();
+                        while (reader1.Read())
+                        {
+                            client_grid.Rows.Add(
+                            reader1["Номер телефона"].ToString(),
+                            reader1["Номер паспорта"].ToString(),
+                            reader1["Фамилия"].ToString(),
+                            reader1["Имя"].ToString(),
+                            reader1["Отчество"].ToString(),
+                            reader1["Электронная почта"].ToString(),
+                            reader1["Адрес"].ToString()
+                            );
+                        }
+                        reader1.Close();
+            }
+        }
+
+        private void del_client_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "del_client";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@phone", SqlDbType.VarChar);
+                comm.Parameters["@phone"].Value = client_grid[0, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Успешно удалено", "Удаление",
+                MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Невозможно удалить клиента, имеющего активные отправления", "Удаление невозможно",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+}
+
+        private void ins_client_btn_Click(object sender, EventArgs e)
+        {
+            ins_client_form form = new ins_client_form();
+            form.Owner = this;
+            form.ShowDialog();
+        }
+
+        private void tb_phone_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

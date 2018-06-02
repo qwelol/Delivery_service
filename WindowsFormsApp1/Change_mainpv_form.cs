@@ -101,6 +101,8 @@ namespace WindowsFormsApp1
                     comm.Parameters.Add("@p2", SqlDbType.VarChar);
                     comm.Parameters["@p2"].Value = cb_new_main.Text;
                     comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
                 }
             }
         }

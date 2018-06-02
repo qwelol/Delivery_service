@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Insert_pv_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,12 @@
     </Compile>
     <Compile Include="insert_vk_form.Designer.cs">
       <DependentUpon>insert_vk_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ins_client_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ins_client_form.Designer.cs">
+      <DependentUpon>ins_client_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Log_form.cs">
       <SubType>Form</SubType>
@@ -80,11 +92,17 @@
     <EmbeddedResource Include="Change_mainpv_form.resx">
       <DependentUpon>Change_mainpv_form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Insert_pv_form.resx">
       <DependentUpon>Insert_pv_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="insert_vk_form.resx">
       <DependentUpon>insert_vk_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ins_client_form.resx">
+      <DependentUpon>ins_client_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Log_form.resx">
       <DependentUpon>Log_form.cs</DependentUpon>

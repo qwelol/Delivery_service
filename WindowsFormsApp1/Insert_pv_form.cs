@@ -131,5 +131,10 @@ namespace WindowsFormsApp1
         {
             con.Close();
         }
+
+        private void tb_mphone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

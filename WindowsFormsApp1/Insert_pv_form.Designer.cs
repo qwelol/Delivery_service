@@ -85,6 +85,7 @@
             this.tb_mphone.Name = "tb_mphone";
             this.tb_mphone.Size = new System.Drawing.Size(121, 20);
             this.tb_mphone.TabIndex = 4;
+            this.tb_mphone.TextChanged += new System.EventHandler(this.tb_mphone_TextChanged);
             this.tb_mphone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_mphone_KeyPress);
             // 
             // tb_adr

@@ -67,19 +67,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.searh_btn = new System.Windows.Forms.Button();
+            this.tb_phone = new System.Windows.Forms.TextBox();
+            this.tb_fam = new System.Windows.Forms.TextBox();
+            this.rb_num = new System.Windows.Forms.RadioButton();
+            this.rb_fam = new System.Windows.Forms.RadioButton();
+            this.client_grid = new System.Windows.Forms.DataGridView();
             this.adminPage = new System.Windows.Forms.TabPage();
-            this.label18 = new System.Windows.Forms.Label();
-            this.ch_btn = new System.Windows.Forms.Button();
-            this.tb_value = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.td_cb = new System.Windows.Forms.ComboBox();
+            this.gb_td = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.change_pv_btn = new System.Windows.Forms.Button();
+            this.td_cb = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tb_value = new System.Windows.Forms.TextBox();
+            this.ch_btn = new System.Windows.Forms.Button();
+            this.gb_vk = new System.Windows.Forms.GroupBox();
+            this.ins_vk_btn = new System.Windows.Forms.Button();
+            this.del_vk_btn = new System.Windows.Forms.Button();
+            this.cb_vk = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tb_charhe = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.ch_vk_btn = new System.Windows.Forms.Button();
             this.pv_search_btn = new System.Windows.Forms.Button();
-            this.del_btn = new System.Windows.Forms.Button();
-            this.insert_btn = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.cb_city = new System.Windows.Forms.ComboBox();
             this.pvGrid = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,15 +96,31 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cb_vk = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tb_charhe = new System.Windows.Forms.TextBox();
-            this.ch_vk_btn = new System.Windows.Forms.Button();
-            this.del_vk_btn = new System.Windows.Forms.Button();
+            this.gb_city = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.ins_vk_btn = new System.Windows.Forms.Button();
+            this.city_grid = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.del_city_btn = new System.Windows.Forms.Button();
+            this.ins_city_btn = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.change_pv_btn = new System.Windows.Forms.Button();
+            this.del_btn = new System.Windows.Forms.Button();
+            this.insert_btn = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.del_client_btn = new System.Windows.Forms.Button();
+            this.ins_client_btn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.operatorPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -104,8 +129,15 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contentGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departureGrid)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.client_grid)).BeginInit();
             this.adminPage.SuspendLayout();
+            this.gb_td.SuspendLayout();
+            this.gb_vk.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pvGrid)).BeginInit();
+            this.gb_city.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.city_grid)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -504,6 +536,14 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.ins_client_btn);
+            this.tabPage3.Controls.Add(this.del_client_btn);
+            this.tabPage3.Controls.Add(this.searh_btn);
+            this.tabPage3.Controls.Add(this.tb_phone);
+            this.tabPage3.Controls.Add(this.tb_fam);
+            this.tabPage3.Controls.Add(this.rb_num);
+            this.tabPage3.Controls.Add(this.rb_fam);
+            this.tabPage3.Controls.Add(this.client_grid);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -512,29 +552,83 @@
             this.tabPage3.Text = "Клиенты";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // searh_btn
+            // 
+            this.searh_btn.Location = new System.Drawing.Point(491, 17);
+            this.searh_btn.Name = "searh_btn";
+            this.searh_btn.Size = new System.Drawing.Size(75, 23);
+            this.searh_btn.TabIndex = 5;
+            this.searh_btn.Text = "Поиск";
+            this.searh_btn.UseVisualStyleBackColor = true;
+            this.searh_btn.Click += new System.EventHandler(this.searh_btn_Click);
+            // 
+            // tb_phone
+            // 
+            this.tb_phone.Location = new System.Drawing.Point(352, 21);
+            this.tb_phone.MaxLength = 12;
+            this.tb_phone.Name = "tb_phone";
+            this.tb_phone.Size = new System.Drawing.Size(100, 20);
+            this.tb_phone.TabIndex = 4;
+            this.tb_phone.TextChanged += new System.EventHandler(this.tb_phone_TextChanged);
+            // 
+            // tb_fam
+            // 
+            this.tb_fam.Location = new System.Drawing.Point(87, 20);
+            this.tb_fam.Name = "tb_fam";
+            this.tb_fam.Size = new System.Drawing.Size(100, 20);
+            this.tb_fam.TabIndex = 3;
+            // 
+            // rb_num
+            // 
+            this.rb_num.AutoSize = true;
+            this.rb_num.Location = new System.Drawing.Point(235, 22);
+            this.rb_num.Name = "rb_num";
+            this.rb_num.Size = new System.Drawing.Size(111, 17);
+            this.rb_num.TabIndex = 2;
+            this.rb_num.Text = "Номер телефона";
+            this.rb_num.UseVisualStyleBackColor = true;
+            // 
+            // rb_fam
+            // 
+            this.rb_fam.AutoSize = true;
+            this.rb_fam.Checked = true;
+            this.rb_fam.Location = new System.Drawing.Point(7, 20);
+            this.rb_fam.Name = "rb_fam";
+            this.rb_fam.Size = new System.Drawing.Size(74, 17);
+            this.rb_fam.TabIndex = 1;
+            this.rb_fam.TabStop = true;
+            this.rb_fam.Text = "Фамилия";
+            this.rb_fam.UseVisualStyleBackColor = true;
+            // 
+            // client_grid
+            // 
+            this.client_grid.AllowUserToAddRows = false;
+            this.client_grid.AllowUserToDeleteRows = false;
+            this.client_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.client_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column14,
+            this.Column15,
+            this.Column12,
+            this.Column13});
+            this.client_grid.Location = new System.Drawing.Point(7, 53);
+            this.client_grid.Name = "client_grid";
+            this.client_grid.ReadOnly = true;
+            this.client_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.client_grid.Size = new System.Drawing.Size(934, 136);
+            this.client_grid.TabIndex = 0;
+            // 
             // adminPage
             // 
-            this.adminPage.Controls.Add(this.ins_vk_btn);
-            this.adminPage.Controls.Add(this.label20);
-            this.adminPage.Controls.Add(this.del_vk_btn);
-            this.adminPage.Controls.Add(this.ch_vk_btn);
-            this.adminPage.Controls.Add(this.tb_charhe);
-            this.adminPage.Controls.Add(this.label19);
-            this.adminPage.Controls.Add(this.cb_vk);
-            this.adminPage.Controls.Add(this.label18);
-            this.adminPage.Controls.Add(this.ch_btn);
-            this.adminPage.Controls.Add(this.tb_value);
-            this.adminPage.Controls.Add(this.label17);
-            this.adminPage.Controls.Add(this.td_cb);
-            this.adminPage.Controls.Add(this.label16);
-            this.adminPage.Controls.Add(this.label15);
-            this.adminPage.Controls.Add(this.change_pv_btn);
+            this.adminPage.Controls.Add(this.gb_td);
+            this.adminPage.Controls.Add(this.gb_vk);
             this.adminPage.Controls.Add(this.pv_search_btn);
-            this.adminPage.Controls.Add(this.del_btn);
-            this.adminPage.Controls.Add(this.insert_btn);
-            this.adminPage.Controls.Add(this.label14);
             this.adminPage.Controls.Add(this.cb_city);
             this.adminPage.Controls.Add(this.pvGrid);
+            this.adminPage.Controls.Add(this.gb_city);
+            this.adminPage.Controls.Add(this.groupBox2);
             this.adminPage.Location = new System.Drawing.Point(4, 22);
             this.adminPage.Name = "adminPage";
             this.adminPage.Padding = new System.Windows.Forms.Padding(3);
@@ -544,29 +638,52 @@
             this.adminPage.UseVisualStyleBackColor = true;
             this.adminPage.Click += new System.EventHandler(this.adminPage_Click);
             // 
-            // label18
+            // gb_td
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(16, 308);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(187, 24);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "Весовая категория:";
+            this.gb_td.Controls.Add(this.label16);
+            this.gb_td.Controls.Add(this.td_cb);
+            this.gb_td.Controls.Add(this.label17);
+            this.gb_td.Controls.Add(this.tb_value);
+            this.gb_td.Controls.Add(this.ch_btn);
+            this.gb_td.Location = new System.Drawing.Point(20, 236);
+            this.gb_td.Name = "gb_td";
+            this.gb_td.Size = new System.Drawing.Size(936, 80);
+            this.gb_td.TabIndex = 25;
+            this.gb_td.TabStop = false;
             // 
-            // ch_btn
+            // label16
             // 
-            this.ch_btn.Location = new System.Drawing.Point(509, 277);
-            this.ch_btn.Name = "ch_btn";
-            this.ch_btn.Size = new System.Drawing.Size(75, 23);
-            this.ch_btn.TabIndex = 12;
-            this.ch_btn.Text = "Изменить";
-            this.ch_btn.UseVisualStyleBackColor = true;
-            this.ch_btn.Click += new System.EventHandler(this.ch_btn_Click);
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.Location = new System.Drawing.Point(2, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(138, 24);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "Тип доставки:";
+            // 
+            // td_cb
+            // 
+            this.td_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.td_cb.FormattingEnabled = true;
+            this.td_cb.Location = new System.Drawing.Point(6, 43);
+            this.td_cb.Name = "td_cb";
+            this.td_cb.Size = new System.Drawing.Size(121, 21);
+            this.td_cb.TabIndex = 9;
+            this.td_cb.SelectedIndexChanged += new System.EventHandler(this.td_cb_SelectedIndexChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(217, 43);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(78, 17);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Стоимость";
             // 
             // tb_value
             // 
-            this.tb_value.Location = new System.Drawing.Point(338, 276);
+            this.tb_value.Location = new System.Drawing.Point(318, 40);
             this.tb_value.MaxLength = 10;
             this.tb_value.Name = "tb_value";
             this.tb_value.Size = new System.Drawing.Size(100, 20);
@@ -574,56 +691,100 @@
             this.tb_value.TextChanged += new System.EventHandler(this.tb_value_TextChanged);
             this.tb_value.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_value_KeyPress);
             // 
-            // label17
+            // ch_btn
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(237, 277);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(78, 17);
-            this.label17.TabIndex = 10;
-            this.label17.Text = "Стоимость";
+            this.ch_btn.Location = new System.Drawing.Point(489, 37);
+            this.ch_btn.Name = "ch_btn";
+            this.ch_btn.Size = new System.Drawing.Size(75, 23);
+            this.ch_btn.TabIndex = 12;
+            this.ch_btn.Text = "Изменить";
+            this.ch_btn.UseVisualStyleBackColor = true;
+            this.ch_btn.Click += new System.EventHandler(this.ch_btn_Click);
             // 
-            // td_cb
+            // gb_vk
             // 
-            this.td_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.td_cb.FormattingEnabled = true;
-            this.td_cb.Location = new System.Drawing.Point(20, 275);
-            this.td_cb.Name = "td_cb";
-            this.td_cb.Size = new System.Drawing.Size(121, 21);
-            this.td_cb.TabIndex = 9;
-            this.td_cb.SelectedIndexChanged += new System.EventHandler(this.td_cb_SelectedIndexChanged);
+            this.gb_vk.Controls.Add(this.ins_vk_btn);
+            this.gb_vk.Controls.Add(this.del_vk_btn);
+            this.gb_vk.Controls.Add(this.cb_vk);
+            this.gb_vk.Controls.Add(this.label19);
+            this.gb_vk.Controls.Add(this.tb_charhe);
+            this.gb_vk.Controls.Add(this.label18);
+            this.gb_vk.Controls.Add(this.ch_vk_btn);
+            this.gb_vk.Location = new System.Drawing.Point(20, 315);
+            this.gb_vk.Name = "gb_vk";
+            this.gb_vk.Size = new System.Drawing.Size(936, 80);
+            this.gb_vk.TabIndex = 24;
+            this.gb_vk.TabStop = false;
             // 
-            // label16
+            // ins_vk_btn
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(16, 248);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(138, 24);
-            this.label16.TabIndex = 8;
-            this.label16.Text = "Тип доставки:";
+            this.ins_vk_btn.Location = new System.Drawing.Point(744, 36);
+            this.ins_vk_btn.Name = "ins_vk_btn";
+            this.ins_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.ins_vk_btn.TabIndex = 20;
+            this.ins_vk_btn.Text = "Добавить";
+            this.ins_vk_btn.UseVisualStyleBackColor = true;
+            this.ins_vk_btn.Click += new System.EventHandler(this.ins_vk_btn_Click);
             // 
-            // label15
+            // del_vk_btn
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(16, 10);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(139, 24);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Пункт выдачи:";
+            this.del_vk_btn.Location = new System.Drawing.Point(855, 36);
+            this.del_vk_btn.Name = "del_vk_btn";
+            this.del_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.del_vk_btn.TabIndex = 18;
+            this.del_vk_btn.Text = "Удалить";
+            this.del_vk_btn.UseVisualStyleBackColor = true;
+            this.del_vk_btn.Click += new System.EventHandler(this.del_vk_btn_Click);
             // 
-            // change_pv_btn
+            // cb_vk
             // 
-            this.change_pv_btn.Location = new System.Drawing.Point(20, 207);
-            this.change_pv_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.change_pv_btn.Name = "change_pv_btn";
-            this.change_pv_btn.Size = new System.Drawing.Size(214, 39);
-            this.change_pv_btn.TabIndex = 6;
-            this.change_pv_btn.Text = "Изменить центральный пункт выдачи";
-            this.change_pv_btn.UseVisualStyleBackColor = true;
-            this.change_pv_btn.Click += new System.EventHandler(this.change_pv_btn_Click);
+            this.cb_vk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_vk.FormattingEnabled = true;
+            this.cb_vk.Location = new System.Drawing.Point(6, 42);
+            this.cb_vk.Name = "cb_vk";
+            this.cb_vk.Size = new System.Drawing.Size(121, 21);
+            this.cb_vk.TabIndex = 14;
+            this.cb_vk.SelectedIndexChanged += new System.EventHandler(this.cb_vk_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(217, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 17);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "Наценка";
+            // 
+            // tb_charhe
+            // 
+            this.tb_charhe.Location = new System.Drawing.Point(318, 39);
+            this.tb_charhe.MaxLength = 2;
+            this.tb_charhe.Name = "tb_charhe";
+            this.tb_charhe.Size = new System.Drawing.Size(100, 20);
+            this.tb_charhe.TabIndex = 16;
+            this.tb_charhe.TextChanged += new System.EventHandler(this.tb_charhe_TextChanged);
+            this.tb_charhe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_charhe_KeyPress);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(2, 12);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(187, 24);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "Весовая категория:";
+            // 
+            // ch_vk_btn
+            // 
+            this.ch_vk_btn.Location = new System.Drawing.Point(489, 36);
+            this.ch_vk_btn.Name = "ch_vk_btn";
+            this.ch_vk_btn.Size = new System.Drawing.Size(75, 23);
+            this.ch_vk_btn.TabIndex = 17;
+            this.ch_vk_btn.Text = "Изменить";
+            this.ch_vk_btn.UseVisualStyleBackColor = true;
+            this.ch_vk_btn.Click += new System.EventHandler(this.ch_vk_btn_Click);
             // 
             // pv_search_btn
             // 
@@ -634,37 +795,6 @@
             this.pv_search_btn.Text = "Поиск";
             this.pv_search_btn.UseVisualStyleBackColor = true;
             this.pv_search_btn.Click += new System.EventHandler(this.pv_search_btn_Click);
-            // 
-            // del_btn
-            // 
-            this.del_btn.Location = new System.Drawing.Point(881, 41);
-            this.del_btn.Name = "del_btn";
-            this.del_btn.Size = new System.Drawing.Size(75, 23);
-            this.del_btn.TabIndex = 3;
-            this.del_btn.Text = "Удалить";
-            this.del_btn.UseVisualStyleBackColor = true;
-            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
-            // 
-            // insert_btn
-            // 
-            this.insert_btn.Location = new System.Drawing.Point(786, 41);
-            this.insert_btn.Name = "insert_btn";
-            this.insert_btn.Size = new System.Drawing.Size(75, 23);
-            this.insert_btn.TabIndex = 2;
-            this.insert_btn.Text = "Добавить";
-            this.insert_btn.UseVisualStyleBackColor = true;
-            this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(17, 38);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 17);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Город";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // cb_city
             // 
@@ -686,11 +816,11 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.pvGrid.Location = new System.Drawing.Point(20, 70);
+            this.pvGrid.Location = new System.Drawing.Point(26, 70);
             this.pvGrid.MultiSelect = false;
             this.pvGrid.Name = "pvGrid";
             this.pvGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.pvGrid.Size = new System.Drawing.Size(936, 117);
+            this.pvGrid.Size = new System.Drawing.Size(924, 117);
             this.pvGrid.TabIndex = 0;
             this.pvGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.pvGrid_CellContentClick);
             this.pvGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.pvGrid_CellEndEdit);
@@ -730,86 +860,241 @@
             this.Column4.Name = "Column4";
             this.Column4.Width = 190;
             // 
+            // gb_city
+            // 
+            this.gb_city.Controls.Add(this.label20);
+            this.gb_city.Controls.Add(this.city_grid);
+            this.gb_city.Controls.Add(this.del_city_btn);
+            this.gb_city.Controls.Add(this.ins_city_btn);
+            this.gb_city.Location = new System.Drawing.Point(20, 401);
+            this.gb_city.Name = "gb_city";
+            this.gb_city.Size = new System.Drawing.Size(936, 266);
+            this.gb_city.TabIndex = 26;
+            this.gb_city.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(6, 11);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(71, 24);
+            this.label20.TabIndex = 19;
+            this.label20.Text = "Город:";
+            // 
+            // city_grid
+            // 
+            this.city_grid.AllowUserToAddRows = false;
+            this.city_grid.AllowUserToDeleteRows = false;
+            this.city_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.city_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.city_grid.Location = new System.Drawing.Point(6, 43);
+            this.city_grid.Name = "city_grid";
+            this.city_grid.ReadOnly = true;
+            this.city_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.city_grid.Size = new System.Drawing.Size(924, 217);
+            this.city_grid.TabIndex = 21;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Название";
+            this.Column6.MinimumWidth = 50;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 300;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Область";
+            this.Column7.MinimumWidth = 50;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 300;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Телефонный код";
+            this.Column8.MinimumWidth = 50;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 200;
+            // 
+            // del_city_btn
+            // 
+            this.del_city_btn.Location = new System.Drawing.Point(855, 14);
+            this.del_city_btn.Name = "del_city_btn";
+            this.del_city_btn.Size = new System.Drawing.Size(75, 23);
+            this.del_city_btn.TabIndex = 22;
+            this.del_city_btn.Text = "Удалить";
+            this.del_city_btn.UseVisualStyleBackColor = true;
+            this.del_city_btn.Click += new System.EventHandler(this.del_city_btn_Click);
+            // 
+            // ins_city_btn
+            // 
+            this.ins_city_btn.Location = new System.Drawing.Point(744, 14);
+            this.ins_city_btn.Name = "ins_city_btn";
+            this.ins_city_btn.Size = new System.Drawing.Size(75, 23);
+            this.ins_city_btn.TabIndex = 23;
+            this.ins_city_btn.Text = "Добавить";
+            this.ins_city_btn.UseVisualStyleBackColor = true;
+            this.ins_city_btn.Click += new System.EventHandler(this.ins_city_btn_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.change_pv_btn);
+            this.groupBox2.Controls.Add(this.del_btn);
+            this.groupBox2.Controls.Add(this.insert_btn);
+            this.groupBox2.Location = new System.Drawing.Point(20, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(936, 234);
+            this.groupBox2.TabIndex = 27;
+            this.groupBox2.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(2, 7);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(139, 24);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Пункт выдачи:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(3, 37);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 17);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Город";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
+            // change_pv_btn
+            // 
+            this.change_pv_btn.Location = new System.Drawing.Point(6, 189);
+            this.change_pv_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.change_pv_btn.Name = "change_pv_btn";
+            this.change_pv_btn.Size = new System.Drawing.Size(214, 39);
+            this.change_pv_btn.TabIndex = 6;
+            this.change_pv_btn.Text = "Изменить центральный пункт выдачи";
+            this.change_pv_btn.UseVisualStyleBackColor = true;
+            this.change_pv_btn.Click += new System.EventHandler(this.change_pv_btn_Click);
+            // 
+            // del_btn
+            // 
+            this.del_btn.Location = new System.Drawing.Point(855, 31);
+            this.del_btn.Name = "del_btn";
+            this.del_btn.Size = new System.Drawing.Size(75, 23);
+            this.del_btn.TabIndex = 3;
+            this.del_btn.Text = "Удалить";
+            this.del_btn.UseVisualStyleBackColor = true;
+            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
+            // 
+            // insert_btn
+            // 
+            this.insert_btn.Location = new System.Drawing.Point(744, 31);
+            this.insert_btn.Name = "insert_btn";
+            this.insert_btn.Size = new System.Drawing.Size(75, 23);
+            this.insert_btn.TabIndex = 2;
+            this.insert_btn.Text = "Добавить";
+            this.insert_btn.UseVisualStyleBackColor = true;
+            this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // cb_vk
-            // 
-            this.cb_vk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_vk.FormattingEnabled = true;
-            this.cb_vk.Location = new System.Drawing.Point(20, 349);
-            this.cb_vk.Name = "cb_vk";
-            this.cb_vk.Size = new System.Drawing.Size(121, 21);
-            this.cb_vk.TabIndex = 14;
-            this.cb_vk.SelectedIndexChanged += new System.EventHandler(this.cb_vk_SelectedIndexChanged);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(237, 350);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 17);
-            this.label19.TabIndex = 15;
-            this.label19.Text = "Наценка";
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
-            // tb_charhe
+            // Column9
             // 
-            this.tb_charhe.Location = new System.Drawing.Point(338, 349);
-            this.tb_charhe.MaxLength = 2;
-            this.tb_charhe.Name = "tb_charhe";
-            this.tb_charhe.Size = new System.Drawing.Size(100, 20);
-            this.tb_charhe.TabIndex = 16;
-            this.tb_charhe.TextChanged += new System.EventHandler(this.tb_charhe_TextChanged);
-            this.tb_charhe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_charhe_KeyPress);
+            this.Column9.HeaderText = "Номер телефона";
+            this.Column9.MinimumWidth = 50;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 80;
             // 
-            // ch_vk_btn
+            // Column10
             // 
-            this.ch_vk_btn.Location = new System.Drawing.Point(509, 349);
-            this.ch_vk_btn.Name = "ch_vk_btn";
-            this.ch_vk_btn.Size = new System.Drawing.Size(75, 23);
-            this.ch_vk_btn.TabIndex = 17;
-            this.ch_vk_btn.Text = "Изменить";
-            this.ch_vk_btn.UseVisualStyleBackColor = true;
-            this.ch_vk_btn.Click += new System.EventHandler(this.ch_vk_btn_Click);
+            this.Column10.HeaderText = "Номер паспорта";
+            this.Column10.MinimumWidth = 50;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 80;
             // 
-            // del_vk_btn
+            // Column11
             // 
-            this.del_vk_btn.Location = new System.Drawing.Point(881, 350);
-            this.del_vk_btn.Name = "del_vk_btn";
-            this.del_vk_btn.Size = new System.Drawing.Size(75, 23);
-            this.del_vk_btn.TabIndex = 18;
-            this.del_vk_btn.Text = "Удалить";
-            this.del_vk_btn.UseVisualStyleBackColor = true;
-            this.del_vk_btn.Click += new System.EventHandler(this.del_vk_btn_Click);
+            this.Column11.HeaderText = "Фамилия";
+            this.Column11.MaxInputLength = 64;
+            this.Column11.MinimumWidth = 50;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Width = 80;
             // 
-            // label20
+            // Column14
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(16, 417);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(71, 24);
-            this.label20.TabIndex = 19;
-            this.label20.Text = "Город:";
+            this.Column14.HeaderText = "Имя";
+            this.Column14.MaxInputLength = 64;
+            this.Column14.MinimumWidth = 50;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 80;
             // 
-            // ins_vk_btn
+            // Column15
             // 
-            this.ins_vk_btn.Location = new System.Drawing.Point(764, 350);
-            this.ins_vk_btn.Name = "ins_vk_btn";
-            this.ins_vk_btn.Size = new System.Drawing.Size(75, 23);
-            this.ins_vk_btn.TabIndex = 20;
-            this.ins_vk_btn.Text = "Добавить";
-            this.ins_vk_btn.UseVisualStyleBackColor = true;
-            this.ins_vk_btn.Click += new System.EventHandler(this.ins_vk_btn_Click);
+            this.Column15.HeaderText = "Отчество";
+            this.Column15.MaxInputLength = 64;
+            this.Column15.MinimumWidth = 50;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 80;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Электронная почта";
+            this.Column12.MinimumWidth = 50;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Width = 180;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Адрес";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Width = 300;
+            // 
+            // del_client_btn
+            // 
+            this.del_client_btn.Location = new System.Drawing.Point(866, 17);
+            this.del_client_btn.Name = "del_client_btn";
+            this.del_client_btn.Size = new System.Drawing.Size(75, 23);
+            this.del_client_btn.TabIndex = 6;
+            this.del_client_btn.Text = "Удалить";
+            this.del_client_btn.UseVisualStyleBackColor = true;
+            this.del_client_btn.Click += new System.EventHandler(this.del_client_btn_Click);
+            // 
+            // ins_client_btn
+            // 
+            this.ins_client_btn.Location = new System.Drawing.Point(7, 210);
+            this.ins_client_btn.Name = "ins_client_btn";
+            this.ins_client_btn.Size = new System.Drawing.Size(75, 23);
+            this.ins_client_btn.TabIndex = 7;
+            this.ins_client_btn.Text = "Добавить";
+            this.ins_client_btn.UseVisualStyleBackColor = true;
+            this.ins_client_btn.Click += new System.EventHandler(this.ins_client_btn_Click);
             // 
             // Main_form
             // 
@@ -833,9 +1118,20 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contentGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departureGrid)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.client_grid)).EndInit();
             this.adminPage.ResumeLayout(false);
-            this.adminPage.PerformLayout();
+            this.gb_td.ResumeLayout(false);
+            this.gb_td.PerformLayout();
+            this.gb_vk.ResumeLayout(false);
+            this.gb_vk.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pvGrid)).EndInit();
+            this.gb_city.ResumeLayout(false);
+            this.gb_city.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.city_grid)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -909,5 +1205,30 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Button ins_vk_btn;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DataGridView city_grid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.Button del_city_btn;
+        private System.Windows.Forms.Button ins_city_btn;
+        private System.Windows.Forms.Button searh_btn;
+        private System.Windows.Forms.TextBox tb_phone;
+        private System.Windows.Forms.TextBox tb_fam;
+        private System.Windows.Forms.RadioButton rb_num;
+        private System.Windows.Forms.RadioButton rb_fam;
+        private System.Windows.Forms.DataGridView client_grid;
+        private System.Windows.Forms.GroupBox gb_vk;
+        private System.Windows.Forms.GroupBox gb_td;
+        private System.Windows.Forms.GroupBox gb_city;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.Button del_client_btn;
+        private System.Windows.Forms.Button ins_client_btn;
     }
 }
