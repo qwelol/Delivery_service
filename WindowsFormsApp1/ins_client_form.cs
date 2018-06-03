@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class ins_client_form : Form
     {
-        static SqlConnection con = new SqlConnection("Data Source=(local);" +
+        static SqlConnection con = new SqlConnection("Data Source=SYCH-PC;" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public ins_client_form()

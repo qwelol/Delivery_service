@@ -202,7 +202,27 @@ ADD CONSTRAINT FK_Отказанное_Отправление FOREIGN KEY ([Код посылки])
     ON UPDATE CASCADE
 ;    
 GO
-
+--Создание представлений
+create view dispatch_without_codes
+as
+select Отправитель, Получатель, [Тип доставки].[Тип доставки], [Весовая категория].Название as 'Весовая категория',
+[Пункт выдачи получения].Адрес as 'Пункт отправления',[Пункт выдачи].Адрес as 'Пункт получения', [Дата отправления], Стоимость, Статус, [Дата получения], Комментарий
+from (Отправление inner join [Тип доставки] on Отправление.[Тип доставки]=[Тип доставки].[Код доставки]) 
+inner join [Весовая категория] on Отправление.[Весовая категория]=[Весовая категория].[Код категории] 
+left join [Пункт выдачи] as [Пункт выдачи получения] on Отправление.[Пункт отправления]=[Пункт выдачи получения].[Код пункта] 
+left join [Пункт выдачи]  on Отправление.[Пункт отправления]=[Пункт выдачи].[Код пункта] 
+go
+create view pv_cities
+as 
+select Название as 'Город', Адрес, (CAST([Телефонный код] AS varchar)+'-'+CAST([Городской телефон] AS varchar)) AS [Городской телефон], [Мобильный телефон]
+from [Пункт выдачи] inner join Город on [Пункт выдачи].[Код города]=Город.[Код города]
+go
+create view number_of_failures
+as 
+select COUNT([Код посылки]) As 'Количество отказов'
+from Отправление
+where Статус='отказано'
+go
 --Создание ХП
 CREATE PROCEDURE Search_pv 
 @x varchar(32) 
@@ -367,7 +387,7 @@ select top 1 @code=[Код категории]
 from [Весовая категория]
 order by [Код категории] desc
 go
-alter proc ins_vk
+create proc ins_vk
 @vk varchar (512),
 @charge tinyint
 as
@@ -409,7 +429,7 @@ create PROCEDURE Search_client_fam
 AS
 SELECT [Номер телефона], [Номер паспорта],[Фамилия],[Имя],[Отчество], [Электронная почта], [Адрес]
 FROM Клиенты 
-WHERE [Фамилия]=@fam
+WHERE [Фамилия] LIKE '%'+@fam+'%'
 go
 CREATE PROCEDURE Search_client_phone 
 @phone mphone
@@ -443,3 +463,79 @@ DELETE FROM Клиенты
 WHERE [Номер телефона]=@phone
 END
 go
+create proc change_client
+@newphone mphone,
+@pas bigint,
+@fam varchar(512),
+@name varchar(512),
+@surname varchar(512),
+@mail email,
+@adr varchar(512),
+@oldphone mphone
+as
+UPDATE Клиенты
+SET [Номер телефона]=@newphone,
+ [Номер паспорта]=@pas,
+ [Фамилия]=@fam,
+ [Имя]=@name,
+ [Отчество]=@surname,
+ [Электронная почта]=@mail,
+ [Адрес]=@adr
+WHERE [Номер телефона] = @oldphone;
+go
+create TRIGGER update_client_trig ON Клиенты
+INSTEAD OF UPDATE 
+AS
+declare @pas bigint
+declare @fam varchar(512)
+declare @name varchar(512)
+declare @surname varchar(512)
+declare @mail email
+declare @adr varchar(512)
+declare @old_phone mphone
+declare @new_phone mphone
+select @old_phone=[Номер телефона] from deleted
+select @new_phone=[Номер телефона] from inserted
+select @pas=[Номер паспорта] from inserted
+select @fam=[Фамилия] from inserted
+select @name=[Имя] from inserted
+select @surname=[Отчество] from inserted
+select @mail=[Электронная почта] from inserted
+select @adr=[Адрес] from inserted
+if (@old_phone = @new_phone)
+  begin
+        UPDATE Клиенты set
+        [Номер телефона]= @old_phone,
+        [Номер паспорта]=@pas,
+        [Фамилия]=@fam,
+        [Имя]=@name,
+        [Отчество]=@surname,
+        [Электронная почта]=@mail,
+        [Адрес]=@adr
+       WHERE [Номер телефона] = @old_phone;
+  end
+else 
+  begin
+    if (@new_phone in (select [Номер телефона] from Клиенты ))
+     rollback tran
+     else
+      begin
+		insert into Клиенты
+		values (@new_phone, @pas, @fam, @name, @surname, @mail, @adr)	    
+        UPDATE [Отправление] 
+        SET     
+        [Отправитель]= @new_phone
+        where [Отправитель]= @old_phone
+        
+        UPDATE [Отправление] 
+        SET     
+        [Получатель]= @new_phone
+        where [Получатель]= @old_phone
+                
+       delete from Клиенты 
+       WHERE [Номер телефона] = @old_phone;        
+      end
+  end
+go
+
+

@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
 
         bool user_type;
-        static SqlConnection con = new SqlConnection("Data Source=(local);" +
+        static SqlConnection con = new SqlConnection("Data Source=SYCH-PC;" +
         "Initial Catalog=Delivery_service;" +
         "Integrated Security=true;");
         public Main_form(bool user)
@@ -587,6 +587,50 @@ namespace WindowsFormsApp1
         private void tb_phone_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 43)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cng_client_btn_Click(object sender, EventArgs e)
+        {
+            SqlCommand comm = con.CreateCommand();  
+            comm.CommandText = "change_client";
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.Parameters.Add("@newphone", SqlDbType.VarChar);
+            comm.Parameters["@newphone"].Value = tb_ch_phone.Text.ToString();
+            comm.Parameters.Add("@pas", SqlDbType.BigInt);
+            comm.Parameters["@pas"].Value = int.Parse(tb_ch_pas.Text.ToString());
+            comm.Parameters.Add("@fam", SqlDbType.VarChar);
+            comm.Parameters["@fam"].Value = tb_ch_fam.Text.ToString();
+            comm.Parameters.Add("@name", SqlDbType.VarChar);
+            comm.Parameters["@name"].Value = tb_ch_name.Text.ToString();
+            comm.Parameters.Add("@surname", SqlDbType.VarChar);
+            comm.Parameters["@surname"].Value = tb_ch_sur.Text.ToString();
+            comm.Parameters.Add("@mail", SqlDbType.VarChar);
+            comm.Parameters["@mail"].Value = tb_ch_mail.Text.ToString();
+            comm.Parameters.Add("@adr", SqlDbType.VarChar);
+            comm.Parameters["@adr"].Value = tb_ch_adr.Text.ToString();
+            comm.Parameters.Add("@oldphone", SqlDbType.VarChar);
+            comm.Parameters["@oldphone"].Value = client_grid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
+            comm.ExecuteNonQuery();
+            MessageBox.Show("Успешно изменено", "Изменение",
+            MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+
+        private void tb_ch_pas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
