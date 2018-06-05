@@ -745,5 +745,98 @@ namespace WindowsFormsApp1
             tb_ch_sur.Text = client_grid[4, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
             tb_ch_adr.Text = client_grid[6, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString(); 
         }
+
+        private void search_btn_Click(object sender, EventArgs e)
+        {
+            refresh_dep();
+            refresh_ref();
+        }
+
+        public void refresh_dep()
+        {
+            if (tb_code.Text.ToString() != String.Empty)
+            {
+                departureGrid.Rows.Clear();
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "search_otp_code";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@code", SqlDbType.Int);
+                comm.Parameters["@code"].Value = tb_code.Text.ToString();
+                SqlDataReader reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    departureGrid.Rows.Add(
+                    reader["Код посылки"].ToString(),
+                    reader["Отправитель"].ToString(),
+                    reader["Получатель"].ToString(),
+                    reader["Тип доставки"].ToString(),
+                    reader["Весовая категория"].ToString(),
+                    reader["Пункт отправления"].ToString(),
+                    reader["Пункт получения"].ToString(),
+                    reader["Дата отправления"].ToString(),
+                    reader["Стоимость"].ToString(),
+                    reader["Статус"].ToString(),
+                    reader["Дата получения"].ToString(),
+                    reader["Комментарий"].ToString()
+                    );
+                }
+                reader.Close();
+            }
+            else
+            { departureGrid.Rows.Clear(); }
+        }
+
+        public void refresh_ref()
+        {
+            refGrid.Rows.Clear();
+            SqlCommand comm = con.CreateCommand(); //заполнение грида 
+            comm.CommandText = "search_ref";
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.Parameters.Add("@code", SqlDbType.Int);
+            try
+            {
+                comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+            }
+            catch (System.NullReferenceException)
+            { comm.Parameters["@code"].Value = 0; }
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                refGrid.Rows.Add(
+                reader["Дата отказа"].ToString(),
+                reader["Причина"].ToString(),
+                reader["Решение"].ToString()
+                );
+            }
+            reader.Close();
+        }
+
+        private void tb_fam_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_phone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 43)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_code_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            refresh_ref();
+        }
     }
 }

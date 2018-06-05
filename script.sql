@@ -203,14 +203,6 @@ ADD CONSTRAINT FK_Отказанное_Отправление FOREIGN KEY ([Код посылки])
 ;    
 GO
 --Создание представлений
-create view dispatch_without_codes
-as
-select Отправитель, Получатель, [Тип доставки].[Тип доставки], [Весовая категория].Название as 'Весовая категория',
- [Дата отправления],pv_cities.Адрес, Стоимость, Статус, [Дата получения], Комментарий
-from (Отправление inner join [Тип доставки] on Отправление.[Тип доставки]=[Тип доставки].[Код доставки]) 
-inner join [Весовая категория] on Отправление.[Весовая категория]=[Весовая категория].[Код категории] 
-inner join pv_cities on Отправление.[Пункт отправления]=pv_cities.[Код пункта]
-go
 create view pv_cities
 as 
 select [Пункт выдачи].[Код пункта] as 'Код пункта', Название as 'Город', Адрес, (CAST([Телефонный код] AS varchar)+'-'+CAST([Городской телефон] AS varchar)) AS [Городской телефон], [Мобильный телефон]
@@ -222,8 +214,19 @@ select COUNT([Код посылки]) As 'Количество отказов'
 from Отправление
 where Статус='отказано'
 go
-select *
-from  dispatch_without_codes
+create view dispatch_without_codes
+as
+select  [Код посылки], Отправитель , Получатель , [Тип доставки].[Тип доставки], 
+ [Весовая категория].Название as 'Весовая категория',
+([Пункт отправления].Город+' '+[Пункт отправления].Адрес) as 'Пункт отправления', 
+ ([Пункт получения].Город+' '+[Пункт получения].Адрес)as 'Пункт получения', 
+ [Дата отправления], Стоимость, Статус, [Дата получения], Комментарий
+from Отправление 
+inner join pv_cities as [Пункт отправления] on Отправление.[Пункт отправления]=[Пункт отправления].[Код пункта]
+inner join pv_cities as [Пункт получения] on Отправление.[Пункт получения]=[Пункт получения].[Код пункта]
+inner join [Весовая категория] on Отправление.[Весовая категория]=[Весовая категория].[Код категории]
+inner join [Тип доставки] on Отправление.[Тип доставки]=[Тип доставки].[Код доставки]
+go
 --Создание ХП
 CREATE PROCEDURE Search_pv 
 @x varchar(32) 
@@ -549,4 +552,49 @@ create proc insert_client
 as
 insert into Клиенты
 values (@phone, @pas,@fam, @name, @surname, @mail, @adr)
-
+go
+create proc search_otp_code
+@code int
+as
+select * 
+from dispatch_without_codes
+where [Код посылки]=@code
+go
+create proc search_ref
+@code int
+as
+select [Дата отказа], Причина, Решение
+from [Отказанное отправление]
+where [Код посылки]=@code
+go
+ALTER TRIGGER set_price ON [Отправление] 
+AFTER INSERT 
+AS 
+DECLARE K CURSOR FOR  
+SELECT [Код посылки], 
+[Весовая категория], 
+[Тип доставки] 
+FROM inserted 
+OPEN K 
+DECLARE @X int 
+DECLARE @VK int 
+DECLARE @TD int  
+DECLARE @VKPrice int 
+DECLARE @TDPrice int 
+FETCH NEXT FROM K INTO @X, @VK, @TD  
+WHILE @@FETCH_STATUS = 0 
+BEGIN 
+SELECT @TDPrice = [Цена] 
+FROM [Тип доставки] 
+WHERE [Код доставки] = @TD 
+SELECT @VKPrice = [Наценка] 
+FROM [Весовая категория] 
+WHERE [Код категории] = @VK 
+UPDATE [Отправление]  
+SET [Стоимость] = @TDPrice*@VKPrice 
+WHERE [Код посылки] = @X 
+FETCH NEXT FROM K INTO @X, @VK, @TD  
+END 
+CLOSE K  
+DEALLOCATE K 
+GO
