@@ -106,5 +106,10 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
+        private void cb_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

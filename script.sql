@@ -309,10 +309,10 @@ SELECT Адрес
 FROM [Пункт выдачи]inner join Город ON [Пункт выдачи].[Код города]=Город.[Код города]
 WHERE Название=@city and [Центральный пункт]=0
 GO
-CREATE PROCEDURE Show_main_pv 
+create PROCEDURE Show_main_pv 
 @city varchar(512)
 AS
-SELECT Адрес
+SELECT Адрес, [Код пункта]
 FROM [Пункт выдачи]inner join Город ON [Пункт выдачи].[Код города]=Город.[Код города]
 WHERE Название=@city and [Центральный пункт]=1
 GO
@@ -567,7 +567,7 @@ select [Дата отказа], Причина, Решение
 from [Отказанное отправление]
 where [Код посылки]=@code
 go
-ALTER TRIGGER set_price ON [Отправление] 
+create trigger set_price ON [Отправление] 
 AFTER INSERT 
 AS 
 DECLARE K CURSOR FOR  
@@ -604,4 +604,42 @@ as
 select [Наименование товара], [Объявленная стоимость], Количество, Вес as 'Вес 1 шт.'
 from [Содержимое]
 where [Код посылки]=@code
+go
+create proc del_otpr
+@code int
+as
+declare @status varchar(512)
+select @status=Статус
+from Отправление
+where [Код посылки]=@code
+if @status<>'отправлено'
+delete from Отправление
+where [Код посылки]=@code
+else RAISERROR ('Нельзя удалить активное отправление',11,1)
+go
+
+create proc get_last_otpr_code
+@code int OUTPUT 
+as
+select top 1 @code=[Код посылки]
+from [Отправление]
+order by [Код посылки] desc
+go
+create proc insert_otpr
+@sender mphone,
+@receiver mphone,
+@td tinyint,
+@vk tinyint,
+@po int,
+@pp int,
+@comm varchar(512)=NULL
+as
+declare @code int
+if ((select [Номер паспорта] from Клиенты where [Номер телефона]=@sender) is not null) 
+begin
+exec get_last_otpr_code @code OUTPUT
+insert into Отправление
+values (@code+1, @sender, @receiver, @td, @vk, @po, @pp,GETDATE(),0, 'отправлено', NULL ,@comm)
+end
+else RAISERROR ('Совершать отправление может только клиент, предоставивший паспортные данные',11,1)
 go

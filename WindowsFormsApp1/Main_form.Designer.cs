@@ -34,28 +34,6 @@
             this.departurePage = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
             this.refGrid = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.change_btn = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cb_gp = new System.Windows.Forms.ComboBox();
-            this.cb_go = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comment = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.cb_pp = new System.Windows.Forms.ComboBox();
-            this.cb_po = new System.Windows.Forms.ComboBox();
-            this.tb_pol = new System.Windows.Forms.TextBox();
-            this.tb_otpr = new System.Windows.Forms.TextBox();
-            this.cb_status = new System.Windows.Forms.ComboBox();
-            this.cb_veight = new System.Windows.Forms.ComboBox();
-            this.cb_type = new System.Windows.Forms.ComboBox();
             this.search_btn = new System.Windows.Forms.Button();
             this.delete_btn = new System.Windows.Forms.Button();
             this.create_btn = new System.Windows.Forms.Button();
@@ -147,6 +125,10 @@
             this.change_pv_btn = new System.Windows.Forms.Button();
             this.del_btn = new System.Windows.Forms.Button();
             this.insert_btn = new System.Windows.Forms.Button();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,7 +137,6 @@
             this.tabControl2.SuspendLayout();
             this.departurePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refGrid)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contentGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departureGrid)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -210,7 +191,6 @@
             // 
             this.departurePage.Controls.Add(this.label13);
             this.departurePage.Controls.Add(this.refGrid);
-            this.departurePage.Controls.Add(this.groupBox1);
             this.departurePage.Controls.Add(this.search_btn);
             this.departurePage.Controls.Add(this.delete_btn);
             this.departurePage.Controls.Add(this.create_btn);
@@ -234,7 +214,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(17, 599);
+            this.label13.Location = new System.Drawing.Point(17, 574);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(291, 29);
@@ -251,271 +231,14 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            this.refGrid.Location = new System.Drawing.Point(19, 639);
+            this.refGrid.Location = new System.Drawing.Point(18, 620);
             this.refGrid.Margin = new System.Windows.Forms.Padding(4);
             this.refGrid.MultiSelect = false;
             this.refGrid.Name = "refGrid";
             this.refGrid.ReadOnly = true;
             this.refGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.refGrid.Size = new System.Drawing.Size(795, 133);
+            this.refGrid.Size = new System.Drawing.Size(795, 99);
             this.refGrid.TabIndex = 9;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.change_btn);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.cb_gp);
-            this.groupBox1.Controls.Add(this.cb_go);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comment);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.cb_pp);
-            this.groupBox1.Controls.Add(this.cb_po);
-            this.groupBox1.Controls.Add(this.tb_pol);
-            this.groupBox1.Controls.Add(this.tb_otpr);
-            this.groupBox1.Controls.Add(this.cb_status);
-            this.groupBox1.Controls.Add(this.cb_veight);
-            this.groupBox1.Controls.Add(this.cb_type);
-            this.groupBox1.Location = new System.Drawing.Point(862, 355);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(383, 497);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            // 
-            // change_btn
-            // 
-            this.change_btn.Location = new System.Drawing.Point(143, 455);
-            this.change_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.change_btn.Name = "change_btn";
-            this.change_btn.Size = new System.Drawing.Size(100, 28);
-            this.change_btn.TabIndex = 20;
-            this.change_btn.Text = "Изменить";
-            this.change_btn.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(5, 228);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(154, 20);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Город получения";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(5, 192);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(176, 20);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "Город отправления";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // cb_gp
-            // 
-            this.cb_gp.FormattingEnabled = true;
-            this.cb_gp.Location = new System.Drawing.Point(201, 226);
-            this.cb_gp.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_gp.Name = "cb_gp";
-            this.cb_gp.Size = new System.Drawing.Size(160, 24);
-            this.cb_gp.TabIndex = 17;
-            // 
-            // cb_go
-            // 
-            this.cb_go.FormattingEnabled = true;
-            this.cb_go.Location = new System.Drawing.Point(201, 192);
-            this.cb_go.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_go.Name = "cb_go";
-            this.cb_go.Size = new System.Drawing.Size(160, 24);
-            this.cb_go.TabIndex = 16;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(139, 340);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(124, 20);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Комментарий";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(8, 300);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(163, 20);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Пункт назначения";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(5, 265);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(174, 20);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Пункт отправления";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(5, 159);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 20);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Статус";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(5, 126);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(172, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Весовая категория";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(5, 92);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Тип доставки";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(8, 55);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Получатель";
-            // 
-            // comment
-            // 
-            this.comment.AutoSize = true;
-            this.comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comment.Location = new System.Drawing.Point(8, 20);
-            this.comment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.comment.Name = "comment";
-            this.comment.Size = new System.Drawing.Size(122, 20);
-            this.comment.TabIndex = 8;
-            this.comment.Text = "Отправитель";
-            this.comment.Click += new System.EventHandler(this.comment_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(23, 378);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.MaxLength = 512;
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(339, 69);
-            this.textBox2.TabIndex = 7;
-            // 
-            // cb_pp
-            // 
-            this.cb_pp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_pp.FormattingEnabled = true;
-            this.cb_pp.Location = new System.Drawing.Point(201, 299);
-            this.cb_pp.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_pp.Name = "cb_pp";
-            this.cb_pp.Size = new System.Drawing.Size(160, 24);
-            this.cb_pp.TabIndex = 6;
-            // 
-            // cb_po
-            // 
-            this.cb_po.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_po.FormattingEnabled = true;
-            this.cb_po.Location = new System.Drawing.Point(201, 260);
-            this.cb_po.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_po.Name = "cb_po";
-            this.cb_po.Size = new System.Drawing.Size(160, 24);
-            this.cb_po.TabIndex = 5;
-            // 
-            // tb_pol
-            // 
-            this.tb_pol.Location = new System.Drawing.Point(201, 55);
-            this.tb_pol.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_pol.Name = "tb_pol";
-            this.tb_pol.Size = new System.Drawing.Size(160, 22);
-            this.tb_pol.TabIndex = 4;
-            // 
-            // tb_otpr
-            // 
-            this.tb_otpr.Location = new System.Drawing.Point(201, 20);
-            this.tb_otpr.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_otpr.Name = "tb_otpr";
-            this.tb_otpr.Size = new System.Drawing.Size(160, 22);
-            this.tb_otpr.TabIndex = 3;
-            // 
-            // cb_status
-            // 
-            this.cb_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_status.FormattingEnabled = true;
-            this.cb_status.Items.AddRange(new object[] {
-            "отправлено",
-            "доставлено",
-            "отказано"});
-            this.cb_status.Location = new System.Drawing.Point(201, 159);
-            this.cb_status.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_status.Name = "cb_status";
-            this.cb_status.Size = new System.Drawing.Size(160, 24);
-            this.cb_status.TabIndex = 2;
-            this.cb_status.SelectedIndexChanged += new System.EventHandler(this.cb_status_SelectedIndexChanged);
-            // 
-            // cb_veight
-            // 
-            this.cb_veight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_veight.FormattingEnabled = true;
-            this.cb_veight.Location = new System.Drawing.Point(201, 126);
-            this.cb_veight.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_veight.Name = "cb_veight";
-            this.cb_veight.Size = new System.Drawing.Size(160, 24);
-            this.cb_veight.TabIndex = 1;
-            this.cb_veight.SelectedIndexChanged += new System.EventHandler(this.cb_veight_SelectedIndexChanged);
-            // 
-            // cb_type
-            // 
-            this.cb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_type.FormattingEnabled = true;
-            this.cb_type.Location = new System.Drawing.Point(201, 87);
-            this.cb_type.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_type.Name = "cb_type";
-            this.cb_type.Size = new System.Drawing.Size(160, 24);
-            this.cb_type.TabIndex = 0;
-            this.cb_type.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // search_btn
             // 
@@ -537,6 +260,7 @@
             this.delete_btn.TabIndex = 6;
             this.delete_btn.Text = "Удалить";
             this.delete_btn.UseVisualStyleBackColor = true;
+            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
             // 
             // create_btn
             // 
@@ -547,12 +271,13 @@
             this.create_btn.TabIndex = 5;
             this.create_btn.Text = "Создать";
             this.create_btn.UseVisualStyleBackColor = true;
+            this.create_btn.Click += new System.EventHandler(this.create_btn_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(17, 334);
+            this.label3.Location = new System.Drawing.Point(17, 355);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 29);
@@ -575,12 +300,18 @@
             // 
             this.contentGrid.AllowUserToAddRows = false;
             this.contentGrid.AllowUserToDeleteRows = false;
+            this.contentGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.contentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.contentGrid.Location = new System.Drawing.Point(19, 380);
+            this.contentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column26,
+            this.Column27,
+            this.Column28,
+            this.Column29});
+            this.contentGrid.Location = new System.Drawing.Point(19, 398);
             this.contentGrid.Margin = new System.Windows.Forms.Padding(4);
             this.contentGrid.Name = "contentGrid";
             this.contentGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.contentGrid.Size = new System.Drawing.Size(795, 215);
+            this.contentGrid.Size = new System.Drawing.Size(794, 154);
             this.contentGrid.TabIndex = 2;
             // 
             // departureGrid
@@ -1484,6 +1215,30 @@
             this.insert_btn.UseVisualStyleBackColor = true;
             this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
             // 
+            // Column26
+            // 
+            this.Column26.HeaderText = "Наименование товара";
+            this.Column26.Name = "Column26";
+            this.Column26.Width = 169;
+            // 
+            // Column27
+            // 
+            this.Column27.HeaderText = "Объявленная стоимость";
+            this.Column27.Name = "Column27";
+            this.Column27.Width = 182;
+            // 
+            // Column28
+            // 
+            this.Column28.HeaderText = "Количество";
+            this.Column28.Name = "Column28";
+            this.Column28.Width = 115;
+            // 
+            // Column29
+            // 
+            this.Column29.HeaderText = "Вес";
+            this.Column29.Name = "Column29";
+            this.Column29.Width = 61;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Дата отказа";
@@ -1493,10 +1248,11 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn2.HeaderText = "Причина";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 205;
+            this.dataGridViewTextBoxColumn2.Width = 95;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -1524,8 +1280,6 @@
             this.departurePage.ResumeLayout(false);
             this.departurePage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refGrid)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contentGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departureGrid)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -1555,28 +1309,6 @@
         private System.Windows.Forms.TabPage adminPage;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage departurePage;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button change_btn;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cb_gp;
-        private System.Windows.Forms.ComboBox cb_go;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label comment;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox cb_pp;
-        private System.Windows.Forms.ComboBox cb_po;
-        private System.Windows.Forms.TextBox tb_pol;
-        private System.Windows.Forms.TextBox tb_otpr;
-        private System.Windows.Forms.ComboBox cb_status;
-        private System.Windows.Forms.ComboBox cb_veight;
-        private System.Windows.Forms.ComboBox cb_type;
         private System.Windows.Forms.Button search_btn;
         private System.Windows.Forms.Button delete_btn;
         private System.Windows.Forms.Button create_btn;
@@ -1669,6 +1401,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Статус;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

@@ -51,6 +51,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="insert_otpr_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="insert_otpr_form.Designer.cs">
+      <DependentUpon>insert_otpr_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Insert_pv_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="insert_otpr_form.resx">
+      <DependentUpon>insert_otpr_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Insert_pv_form.resx">
       <DependentUpon>Insert_pv_form.cs</DependentUpon>

@@ -38,7 +38,6 @@ namespace WindowsFormsApp1
             SqlDataReader reader = fill.ExecuteReader();//открыли ридер 
             while (reader.Read())
             {
-                cb_type.Items.Add(reader["Тип доставки"].ToString()); //заполняем сразу 2 поля
                 td_cb.Items.Add(reader["Тип доставки"].ToString());
             }
             reader.Close();
@@ -68,10 +67,6 @@ namespace WindowsFormsApp1
                 cb_city.Items.Add(reader_city["Название"].ToString());
             }
             reader_city.Close();
-
-            cb_po.Enabled = false;
-            cb_pp.Enabled = false;
-            refGrid.Enabled = false;
         }
 
         private void Main_form_FormClosed(object sender, FormClosedEventArgs e)
@@ -87,33 +82,33 @@ namespace WindowsFormsApp1
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cb_type.SelectedIndex)
-            {
-                case 0:
-                    {
-                        cb_po.Enabled = false;
-                        cb_pp.Enabled = false;
-                        break;
-                    }
-                case 1:
-                    {
-                        cb_po.Enabled = true;
-                        cb_pp.Enabled = false;
-                        break;
-                    }
-                case 2:
-                    {
-                        cb_po.Enabled = false;
-                        cb_pp.Enabled = true;
-                        break;
-                    }
-                case 3:
-                    {
-                        cb_po.Enabled = true;
-                        cb_pp.Enabled = true;
-                        break;
-                    }
-            }
+            //switch (cb_type.SelectedIndex)
+            //{
+            //    case 0:
+            //        {
+            //            cb_po.Enabled = false;
+            //            cb_pp.Enabled = false;
+            //            break;
+            //        }
+            //    case 1:
+            //        {
+            //            cb_po.Enabled = true;
+            //            cb_pp.Enabled = false;
+            //            break;
+            //        }
+            //    case 2:
+            //        {
+            //            cb_po.Enabled = false;
+            //            cb_pp.Enabled = true;
+            //            break;
+            //        }
+            //    case 3:
+            //        {
+            //            cb_po.Enabled = true;
+            //            cb_pp.Enabled = true;
+            //            break;
+            //        }
+            //}
         }
 
         private void comment_Click(object sender, EventArgs e)
@@ -138,19 +133,6 @@ namespace WindowsFormsApp1
 
         private void label11_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void cb_status_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cb_status.SelectedIndex == 2)
-            {
-                refGrid.Enabled = true;
-            }
-            else
-            {
-                refGrid.Enabled = false;
-            }
 
         }
 
@@ -749,6 +731,7 @@ namespace WindowsFormsApp1
         private void search_btn_Click(object sender, EventArgs e)
         {
             refresh_dep();
+            refresh_content();
             refresh_ref();
         }
 
@@ -811,6 +794,32 @@ namespace WindowsFormsApp1
             reader.Close();
         }
 
+        public void refresh_content()
+        {
+            contentGrid.Rows.Clear();
+            SqlCommand comm = con.CreateCommand(); //заполнение грида 
+            comm.CommandText = "search_content";
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.Parameters.Add("@code", SqlDbType.Int);
+            try
+            {
+                comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+            }
+            catch (System.NullReferenceException)
+            { comm.Parameters["@code"].Value = 0; }
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                contentGrid.Rows.Add(
+                reader["Наименование товара"].ToString(),
+                reader["Объявленная стоимость"].ToString(),
+                reader["Количество"].ToString(),
+                reader["Вес 1 шт."].ToString()
+                );
+            }
+            reader.Close();
+        }
+
         private void tb_fam_TextChanged(object sender, EventArgs e)
         {
 
@@ -837,6 +846,39 @@ namespace WindowsFormsApp1
         private void button1_Click_1(object sender, EventArgs e)
         {
             refresh_ref();
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "del_otpr";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@code", SqlDbType.Int);
+                try
+                {
+                    comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно удалено", "Удаление",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    refresh_dep();
+                }
+                catch (System.NullReferenceException)
+                { comm.Parameters["@code"].Value = 0; }
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Невозможно удалить активное отправление", "Удаление невозможно",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void create_btn_Click(object sender, EventArgs e)
+        {
+            insert_otpr_form form = new insert_otpr_form();
+            form.Owner = this;
+            form.ShowDialog();
         }
     }
 }
