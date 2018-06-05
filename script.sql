@@ -598,3 +598,10 @@ END
 CLOSE K  
 DEALLOCATE K 
 GO
+create proc search_content
+@code int
+as
+select [Наименование товара], [Объявленная стоимость], Количество, Вес as 'Вес 1 шт.'
+from [Содержимое]
+where [Код посылки]=@code
+go
