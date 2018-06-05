@@ -319,29 +319,37 @@ namespace WindowsFormsApp1
 
         private void ch_btn_Click(object sender, EventArgs e)
         {
-            if (td_cb.SelectedIndex==-1)
+            if (td_cb.SelectedIndex == -1)
             {
                 MessageBox.Show("Не выбран тип доставки", "Изменение не сохранено",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            else
             {
-                try
+                if (int.Parse(tb_value.Text.ToString()) != 0)
                 {
-                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                    comm.CommandText = "change_value";
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.Add("@td", SqlDbType.VarChar);
-                    comm.Parameters["@td"].Value = td_cb.Text.ToString();
-                    comm.Parameters.Add("@value", SqlDbType.Real);
-                    comm.Parameters["@value"].Value = Single.Parse(tb_value.Text.ToString());
-                    comm.ExecuteNonQuery();
-                    MessageBox.Show("Успешно изменено", "Изменение",
-                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    try
+                    {
+                        SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                        comm.CommandText = "change_value";
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.Parameters.Add("@td", SqlDbType.VarChar);
+                        comm.Parameters["@td"].Value = td_cb.Text.ToString();
+                        comm.Parameters.Add("@value", SqlDbType.Real);
+                        comm.Parameters["@value"].Value = Single.Parse(tb_value.Text.ToString());
+                        comm.ExecuteNonQuery();
+                        MessageBox.Show("Успешно изменено", "Изменение",
+                        MessageBoxButtons.OK, MessageBoxIcon.None);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Отсутствует значение", "Изменение не сохранено",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("Отсутствует значение", "Изменение не сохранено",
+                    MessageBox.Show("Стоимость дожна быть >0", "Изменение не сохранено",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -400,16 +408,24 @@ namespace WindowsFormsApp1
             }
             else
             {
-                SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                comm.CommandText = "change_charge";
-                comm.CommandType = CommandType.StoredProcedure;
-                comm.Parameters.Add("@vk", SqlDbType.VarChar);
-                comm.Parameters["@vk"].Value = cb_vk.Text.ToString();
-                comm.Parameters.Add("@value", SqlDbType.Real);
-                comm.Parameters["@value"].Value = Single.Parse(tb_charhe.Text.ToString());
-                comm.ExecuteNonQuery();
-                MessageBox.Show("Успешно изменено", "Изменение",
-                MessageBoxButtons.OK, MessageBoxIcon.None);
+                if (int.Parse(tb_charhe.Text.ToString()) != 0)
+                {
+                    SqlCommand comm = con.CreateCommand();
+                    comm.CommandText = "change_charge";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@vk", SqlDbType.VarChar);
+                    comm.Parameters["@vk"].Value = cb_vk.Text.ToString();
+                    comm.Parameters.Add("@value", SqlDbType.Real);
+                    comm.Parameters["@value"].Value = Single.Parse(tb_charhe.Text.ToString());
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+                else
+                {
+                    MessageBox.Show("Наценка дожна быть >0", "Изменение не сохранено",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -485,29 +501,8 @@ namespace WindowsFormsApp1
             form.Owner = this;
             form.ShowDialog();
         }
-        public void refresh_city ()
-        {
-            SqlCommand comm = con.CreateCommand();
-            comm.Parameters.Clear();
-            cb_city.Items.Clear();
-            city_grid.Rows.Clear();
 
-            comm.CommandText = "show_city";
-            comm.CommandType = CommandType.StoredProcedure;
-            SqlDataReader reader_city = comm.ExecuteReader();
-            while (reader_city.Read())
-            {
-                city_grid.Rows.Add(
-                reader_city["Название"].ToString(),
-                reader_city["Область"].ToString(),
-                reader_city["Телефонный код"].ToString()
-                );
-                cb_city.Items.Add(reader_city["Название"].ToString());
-            }
-            reader_city.Close();
-        }
-
-        private void searh_btn_Click(object sender, EventArgs e)
+        public void refresh_client()
         {
             if (rb_fam.Checked == true)
             {
@@ -534,27 +529,100 @@ namespace WindowsFormsApp1
             }
             else
             {
-                        client_grid.Rows.Clear();
-                        SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                        comm.CommandText = "Search_client_phone";
-                        comm.CommandType = CommandType.StoredProcedure;
-                        comm.Parameters.Add("@phone", SqlDbType.VarChar);
-                        comm.Parameters["@phone"].Value = tb_phone.Text.ToString();
-                        SqlDataReader reader1 = comm.ExecuteReader();
-                        while (reader1.Read())
-                        {
-                            client_grid.Rows.Add(
-                            reader1["Номер телефона"].ToString(),
-                            reader1["Номер паспорта"].ToString(),
-                            reader1["Фамилия"].ToString(),
-                            reader1["Имя"].ToString(),
-                            reader1["Отчество"].ToString(),
-                            reader1["Электронная почта"].ToString(),
-                            reader1["Адрес"].ToString()
-                            );
-                        }
-                        reader1.Close();
+                client_grid.Rows.Clear();
+                SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                comm.CommandText = "Search_client_phone";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("@phone", SqlDbType.VarChar);
+                comm.Parameters["@phone"].Value = tb_phone.Text.ToString();
+                SqlDataReader reader1 = comm.ExecuteReader();
+                while (reader1.Read())
+                {
+                    client_grid.Rows.Add(
+                    reader1["Номер телефона"].ToString(),
+                    reader1["Номер паспорта"].ToString(),
+                    reader1["Фамилия"].ToString(),
+                    reader1["Имя"].ToString(),
+                    reader1["Отчество"].ToString(),
+                    reader1["Электронная почта"].ToString(),
+                    reader1["Адрес"].ToString()
+                    );
+                }
+                reader1.Close();
             }
+        }
+
+        public void refresh_city ()
+        {
+            SqlCommand comm = con.CreateCommand();
+            comm.Parameters.Clear();
+            cb_city.Items.Clear();
+            city_grid.Rows.Clear();
+
+            comm.CommandText = "show_city";
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader_city = comm.ExecuteReader();
+            while (reader_city.Read())
+            {
+                city_grid.Rows.Add(
+                reader_city["Название"].ToString(),
+                reader_city["Область"].ToString(),
+                reader_city["Телефонный код"].ToString()
+                );
+                cb_city.Items.Add(reader_city["Название"].ToString());
+            }
+            reader_city.Close();
+        }
+
+        private void searh_btn_Click(object sender, EventArgs e)
+        {
+            refresh_client();
+            //if (rb_fam.Checked == true)
+            //{
+            //    client_grid.Rows.Clear();
+            //    SqlCommand comm = con.CreateCommand(); //заполнение грида 
+            //    comm.CommandText = "Search_client_fam";
+            //    comm.CommandType = CommandType.StoredProcedure;
+            //    comm.Parameters.Add("@fam", SqlDbType.VarChar);
+            //    comm.Parameters["@fam"].Value = tb_fam.Text.ToString();
+            //    SqlDataReader reader = comm.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        client_grid.Rows.Add(
+            //        reader["Номер телефона"].ToString(),
+            //        reader["Номер паспорта"].ToString(),
+            //        reader["Фамилия"].ToString(),
+            //        reader["Имя"].ToString(),
+            //        reader["Отчество"].ToString(),
+            //        reader["Электронная почта"].ToString(),
+            //        reader["Адрес"].ToString()
+            //        );
+            //    }
+            //    reader.Close();
+            //}
+            //else
+            //{
+            //            client_grid.Rows.Clear();
+            //            SqlCommand comm = con.CreateCommand(); //заполнение грида 
+            //            comm.CommandText = "Search_client_phone";
+            //            comm.CommandType = CommandType.StoredProcedure;
+            //            comm.Parameters.Add("@phone", SqlDbType.VarChar);
+            //            comm.Parameters["@phone"].Value = tb_phone.Text.ToString();
+            //            SqlDataReader reader1 = comm.ExecuteReader();
+            //            while (reader1.Read())
+            //            {
+            //                client_grid.Rows.Add(
+            //                reader1["Номер телефона"].ToString(),
+            //                reader1["Номер паспорта"].ToString(),
+            //                reader1["Фамилия"].ToString(),
+            //                reader1["Имя"].ToString(),
+            //                reader1["Отчество"].ToString(),
+            //                reader1["Электронная почта"].ToString(),
+            //                reader1["Адрес"].ToString()
+            //                );
+            //            }
+            //            reader1.Close();
+            //}
         }
 
         private void del_client_btn_Click(object sender, EventArgs e)
@@ -569,7 +637,8 @@ namespace WindowsFormsApp1
                 comm.ExecuteNonQuery();
                 MessageBox.Show("Успешно удалено", "Удаление",
                 MessageBoxButtons.OK, MessageBoxIcon.None);
-        }
+                refresh_client();
+            }
             catch (System.Data.SqlClient.SqlException)
             {
                 MessageBox.Show("Невозможно удалить клиента, имеющего активные отправления", "Удаление невозможно",
@@ -600,28 +669,61 @@ namespace WindowsFormsApp1
 
         private void cng_client_btn_Click(object sender, EventArgs e)
         {
-            SqlCommand comm = con.CreateCommand();  
-            comm.CommandText = "change_client";
-            comm.CommandType = CommandType.StoredProcedure;
-            comm.Parameters.Add("@newphone", SqlDbType.VarChar);
-            comm.Parameters["@newphone"].Value = tb_ch_phone.Text.ToString();
-            comm.Parameters.Add("@pas", SqlDbType.BigInt);
-            comm.Parameters["@pas"].Value = int.Parse(tb_ch_pas.Text.ToString());
-            comm.Parameters.Add("@fam", SqlDbType.VarChar);
-            comm.Parameters["@fam"].Value = tb_ch_fam.Text.ToString();
-            comm.Parameters.Add("@name", SqlDbType.VarChar);
-            comm.Parameters["@name"].Value = tb_ch_name.Text.ToString();
-            comm.Parameters.Add("@surname", SqlDbType.VarChar);
-            comm.Parameters["@surname"].Value = tb_ch_sur.Text.ToString();
-            comm.Parameters.Add("@mail", SqlDbType.VarChar);
-            comm.Parameters["@mail"].Value = tb_ch_mail.Text.ToString();
-            comm.Parameters.Add("@adr", SqlDbType.VarChar);
-            comm.Parameters["@adr"].Value = tb_ch_adr.Text.ToString();
-            comm.Parameters.Add("@oldphone", SqlDbType.VarChar);
-            comm.Parameters["@oldphone"].Value = client_grid[0, int.Parse(pvGrid.CurrentRow.Index.ToString())].Value.ToString();
-            comm.ExecuteNonQuery();
-            MessageBox.Show("Успешно изменено", "Изменение",
-            MessageBoxButtons.OK, MessageBoxIcon.None);
+            if ((tb_ch_pas.Text.ToString().Length == 10) || (tb_ch_pas.Text.ToString() == string.Empty))
+            {
+                try
+                {
+                    SqlCommand comm = con.CreateCommand();
+                    comm.CommandText = "change_client";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@newphone", SqlDbType.VarChar);
+                    if (tb_ch_phone.Text.ToString() == string.Empty)
+                        comm.Parameters["@newphone"].Value = null;
+                    else comm.Parameters["@newphone"].Value = tb_ch_phone.Text.ToString();
+                    comm.Parameters.Add("@oldphone", SqlDbType.VarChar);
+                    comm.Parameters["@oldphone"].Value = client_grid[0, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+                    comm.Parameters.Add("@fam", SqlDbType.VarChar);
+                    if (tb_ch_fam.Text.ToString() == string.Empty)
+                        comm.Parameters["@fam"].Value = null;
+                    else comm.Parameters["@fam"].Value = tb_ch_fam.Text.ToString();
+                    comm.Parameters.Add("@name", SqlDbType.VarChar);
+                    if (tb_ch_name.Text.ToString() == string.Empty)
+                        comm.Parameters["@name"].Value = null;
+                    else comm.Parameters["@name"].Value = tb_ch_name.Text.ToString();
+                    comm.Parameters.Add("@pas", SqlDbType.BigInt);
+                    if (tb_ch_pas.Text.ToString() == string.Empty)
+                    {
+                        comm.Parameters["@pas"].Value = null;
+                    }
+                    else comm.Parameters["@pas"].Value = long.Parse(tb_ch_pas.Text.ToString());
+                    comm.Parameters.Add("@surname", SqlDbType.VarChar);
+                    if (tb_ch_sur.Text.ToString() == string.Empty)
+                        comm.Parameters["@surname"].Value = null;
+                    else comm.Parameters["@surname"].Value = tb_ch_sur.Text.ToString();
+                    comm.Parameters.Add("@adr", SqlDbType.VarChar);
+                    if (tb_ch_adr.Text.ToString() == string.Empty)
+                        comm.Parameters["@adr"].Value = null;
+                    else comm.Parameters["@adr"].Value = tb_ch_adr.Text.ToString();
+                    comm.Parameters.Add("@mail", SqlDbType.VarChar);
+                    if (tb_ch_mail.Text.ToString() == string.Empty)
+                        comm.Parameters["@mail"].Value = null;
+                    else comm.Parameters["@mail"].Value = tb_ch_mail.Text.ToString();
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    refresh_client();
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    MessageBox.Show("Обязательные поля заполнены некоректно", "Изменение не сохранено",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Некоректный номер паспорта", "Изменение не сохранено",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tb_ch_pas_KeyPress(object sender, KeyPressEventArgs e)
@@ -631,6 +733,17 @@ namespace WindowsFormsApp1
             {
                 e.Handled = true;
             }
+        }
+
+        private void client_grid_SelectionChanged(object sender, EventArgs e)
+        {
+            tb_ch_phone.Text = client_grid[0, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_pas.Text = client_grid[1, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_mail.Text = client_grid[5, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_fam.Text = client_grid[2, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_name.Text = client_grid[3, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_sur.Text = client_grid[4, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString();
+            tb_ch_adr.Text = client_grid[6, int.Parse(client_grid.CurrentRow.Index.ToString())].Value.ToString(); 
         }
     }
 }

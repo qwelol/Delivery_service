@@ -37,37 +37,45 @@ namespace WindowsFormsApp1
 
         private void ok_btn_Click(object sender, EventArgs e)
         {
-            try
+            if (int.Parse(tb_charge.Text.ToString()) != 0)
             {
-                SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                comm.CommandText = "ins_vk";
-                comm.CommandType = CommandType.StoredProcedure;
-                comm.Parameters.Add("@vk", SqlDbType.VarChar);
-                comm.Parameters["@vk"].Value = tb_name.Text.ToString();
-                comm.Parameters.Add("@charge", SqlDbType.Int);
-                comm.Parameters["@charge"].Value = int.Parse(tb_charge.Text.ToString());
-                comm.ExecuteNonQuery();
-                MessageBox.Show("Успешно добавлено", "Добавление",
-                MessageBoxButtons.OK, MessageBoxIcon.None);
-                Main_form main = this.Owner as Main_form;
-                if (main != null)
+                try
                 {
-                    main.cb_vk.Items.Clear();
-                    SqlCommand fill = con.CreateCommand();
-                    fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
-                    //запрос можно запихнуть в ХП 
-                    SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
-                    while (reader1.Read())
+                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                    comm.CommandText = "ins_vk";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@vk", SqlDbType.VarChar);
+                    comm.Parameters["@vk"].Value = tb_name.Text.ToString();
+                    comm.Parameters.Add("@charge", SqlDbType.Int);
+                    comm.Parameters["@charge"].Value = int.Parse(tb_charge.Text.ToString());
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно добавлено", "Добавление",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    Main_form main = this.Owner as Main_form;
+                    if (main != null)
                     {
-                        main.cb_vk.Items.Add(reader1["Название"].ToString());
+                        main.cb_vk.Items.Clear();
+                        SqlCommand fill = con.CreateCommand();
+                        fill.CommandText = "SELECT [Название] FROM [Весовая категория] ORDER BY [Код категории] ";
+                        //запрос можно запихнуть в ХП 
+                        SqlDataReader reader1 = fill.ExecuteReader();//открыли ридер 
+                        while (reader1.Read())
+                        {
+                            main.cb_vk.Items.Add(reader1["Название"].ToString());
+                        }
+                        reader1.Close();
+                        this.Close();
                     }
-                    reader1.Close();
-                    this.Close();
+                }
+                catch (System.FormatException)
+                {
+                    MessageBox.Show("Поля не заполнены", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (System.FormatException)
+            else
             {
-                MessageBox.Show("Поля не заполнены", "Ошибка",
+                MessageBox.Show("Наценка дожна быть >0", "Изменение не сохранено",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -85,6 +93,11 @@ namespace WindowsFormsApp1
         private void cncl_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tb_charge_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

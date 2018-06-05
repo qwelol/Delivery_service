@@ -206,15 +206,14 @@ GO
 create view dispatch_without_codes
 as
 select Отправитель, Получатель, [Тип доставки].[Тип доставки], [Весовая категория].Название as 'Весовая категория',
-[Пункт выдачи получения].Адрес as 'Пункт отправления',[Пункт выдачи].Адрес as 'Пункт получения', [Дата отправления], Стоимость, Статус, [Дата получения], Комментарий
+ [Дата отправления],pv_cities.Адрес, Стоимость, Статус, [Дата получения], Комментарий
 from (Отправление inner join [Тип доставки] on Отправление.[Тип доставки]=[Тип доставки].[Код доставки]) 
 inner join [Весовая категория] on Отправление.[Весовая категория]=[Весовая категория].[Код категории] 
-left join [Пункт выдачи] as [Пункт выдачи получения] on Отправление.[Пункт отправления]=[Пункт выдачи получения].[Код пункта] 
-left join [Пункт выдачи]  on Отправление.[Пункт отправления]=[Пункт выдачи].[Код пункта] 
+inner join pv_cities on Отправление.[Пункт отправления]=pv_cities.[Код пункта]
 go
 create view pv_cities
 as 
-select Название as 'Город', Адрес, (CAST([Телефонный код] AS varchar)+'-'+CAST([Городской телефон] AS varchar)) AS [Городской телефон], [Мобильный телефон]
+select [Пункт выдачи].[Код пункта] as 'Код пункта', Название as 'Город', Адрес, (CAST([Телефонный код] AS varchar)+'-'+CAST([Городской телефон] AS varchar)) AS [Городской телефон], [Мобильный телефон]
 from [Пункт выдачи] inner join Город on [Пункт выдачи].[Код города]=Город.[Код города]
 go
 create view number_of_failures
@@ -223,6 +222,8 @@ select COUNT([Код посылки]) As 'Количество отказов'
 from Отправление
 where Статус='отказано'
 go
+select *
+from  dispatch_without_codes
 --Создание ХП
 CREATE PROCEDURE Search_pv 
 @x varchar(32) 
@@ -465,13 +466,13 @@ END
 go
 create proc change_client
 @newphone mphone,
-@pas bigint,
+@oldphone mphone,
 @fam varchar(512),
 @name varchar(512),
-@surname varchar(512),
-@mail email,
-@adr varchar(512),
-@oldphone mphone
+@pas bigint=NULL,
+@surname varchar(512)=NULL,
+@adr varchar(512)=NULL,
+@mail email=NULL
 as
 UPDATE Клиенты
 SET [Номер телефона]=@newphone,
@@ -537,5 +538,15 @@ else
       end
   end
 go
-
+create proc insert_client
+@phone mphone,
+@fam varchar(512),
+@name varchar(512),
+@pas bigint=NULL,
+@surname varchar(512)=NULL,
+@adr varchar(512)=NULL,
+@mail email=NULL
+as
+insert into Клиенты
+values (@phone, @pas,@fam, @name, @surname, @mail, @adr)
 

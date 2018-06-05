@@ -44,88 +44,98 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ins_btn = new System.Windows.Forms.Button();
             this.cnl_btn = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tb_phone
             // 
-            this.tb_phone.Location = new System.Drawing.Point(250, 12);
+            this.tb_phone.Location = new System.Drawing.Point(333, 15);
+            this.tb_phone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_phone.MaxLength = 12;
             this.tb_phone.Name = "tb_phone";
-            this.tb_phone.Size = new System.Drawing.Size(100, 20);
+            this.tb_phone.Size = new System.Drawing.Size(132, 22);
             this.tb_phone.TabIndex = 0;
             this.tb_phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tb_pas
             // 
-            this.tb_pas.Location = new System.Drawing.Point(250, 48);
+            this.tb_pas.Location = new System.Drawing.Point(333, 59);
+            this.tb_pas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_pas.MaxLength = 10;
             this.tb_pas.Name = "tb_pas";
-            this.tb_pas.Size = new System.Drawing.Size(100, 20);
+            this.tb_pas.Size = new System.Drawing.Size(132, 22);
             this.tb_pas.TabIndex = 1;
             this.tb_pas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // tb_fam
             // 
-            this.tb_fam.Location = new System.Drawing.Point(250, 84);
+            this.tb_fam.Location = new System.Drawing.Point(333, 103);
+            this.tb_fam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_fam.MaxLength = 64;
             this.tb_fam.Name = "tb_fam";
-            this.tb_fam.Size = new System.Drawing.Size(100, 20);
+            this.tb_fam.Size = new System.Drawing.Size(132, 22);
             this.tb_fam.TabIndex = 2;
             this.tb_fam.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.tb_fam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(250, 120);
+            this.tb_name.Location = new System.Drawing.Point(333, 148);
+            this.tb_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_name.MaxLength = 64;
             this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(100, 20);
+            this.tb_name.Size = new System.Drawing.Size(132, 22);
             this.tb_name.TabIndex = 3;
             this.tb_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_name_KeyPress);
             // 
             // tb_surname
             // 
-            this.tb_surname.Location = new System.Drawing.Point(250, 156);
+            this.tb_surname.Location = new System.Drawing.Point(333, 192);
+            this.tb_surname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_surname.MaxLength = 64;
             this.tb_surname.Name = "tb_surname";
-            this.tb_surname.Size = new System.Drawing.Size(100, 20);
+            this.tb_surname.Size = new System.Drawing.Size(132, 22);
             this.tb_surname.TabIndex = 4;
             this.tb_surname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_surname_KeyPress);
             // 
             // tb_mail
             // 
-            this.tb_mail.Location = new System.Drawing.Point(250, 192);
+            this.tb_mail.Location = new System.Drawing.Point(333, 236);
+            this.tb_mail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_mail.MaxLength = 32;
             this.tb_mail.Name = "tb_mail";
-            this.tb_mail.Size = new System.Drawing.Size(100, 20);
+            this.tb_mail.Size = new System.Drawing.Size(132, 22);
             this.tb_mail.TabIndex = 5;
             // 
             // tb_adr
             // 
-            this.tb_adr.Location = new System.Drawing.Point(105, 228);
+            this.tb_adr.Location = new System.Drawing.Point(140, 281);
+            this.tb_adr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_adr.MaxLength = 512;
             this.tb_adr.Multiline = true;
             this.tb_adr.Name = "tb_adr";
-            this.tb_adr.Size = new System.Drawing.Size(245, 56);
+            this.tb_adr.Size = new System.Drawing.Size(325, 68);
             this.tb_adr.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(25, 15);
+            this.label1.Location = new System.Drawing.Point(33, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 17);
+            this.label1.Size = new System.Drawing.Size(161, 20);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Номер телефона";
+            this.label1.Text = "Номер телефона*";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(25, 51);
+            this.label2.Location = new System.Drawing.Point(33, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 17);
+            this.label2.Size = new System.Drawing.Size(148, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Номер паспорта";
             // 
@@ -133,29 +143,32 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(25, 87);
+            this.label3.Location = new System.Drawing.Point(33, 107);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 17);
+            this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Фамилия";
+            this.label3.Text = "Фамилия*";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(25, 127);
+            this.label4.Location = new System.Drawing.Point(33, 156);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 17);
+            this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Имя";
+            this.label4.Text = "Имя*";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(25, 163);
+            this.label5.Location = new System.Drawing.Point(33, 201);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 17);
+            this.label5.Size = new System.Drawing.Size(91, 20);
             this.label5.TabIndex = 11;
             this.label5.Text = "Отчество";
             // 
@@ -163,9 +176,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(25, 199);
+            this.label6.Location = new System.Drawing.Point(33, 245);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 17);
+            this.label6.Size = new System.Drawing.Size(176, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "Электронная почта";
             // 
@@ -173,17 +187,19 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(25, 231);
+            this.label7.Location = new System.Drawing.Point(33, 284);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 17);
+            this.label7.Size = new System.Drawing.Size(62, 20);
             this.label7.TabIndex = 13;
             this.label7.Text = "Адрес";
             // 
             // ins_btn
             // 
-            this.ins_btn.Location = new System.Drawing.Point(20, 290);
+            this.ins_btn.Location = new System.Drawing.Point(37, 374);
+            this.ins_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ins_btn.Name = "ins_btn";
-            this.ins_btn.Size = new System.Drawing.Size(75, 23);
+            this.ins_btn.Size = new System.Drawing.Size(100, 28);
             this.ins_btn.TabIndex = 14;
             this.ins_btn.Text = "Добавить";
             this.ins_btn.UseVisualStyleBackColor = true;
@@ -191,19 +207,30 @@
             // 
             // cnl_btn
             // 
-            this.cnl_btn.Location = new System.Drawing.Point(275, 290);
+            this.cnl_btn.Location = new System.Drawing.Point(365, 374);
+            this.cnl_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cnl_btn.Name = "cnl_btn";
-            this.cnl_btn.Size = new System.Drawing.Size(75, 23);
+            this.cnl_btn.Size = new System.Drawing.Size(100, 28);
             this.cnl_btn.TabIndex = 15;
             this.cnl_btn.Text = "Отмена";
             this.cnl_btn.UseVisualStyleBackColor = true;
             this.cnl_btn.Click += new System.EventHandler(this.cnl_btn_Click);
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(34, 353);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(324, 17);
+            this.label28.TabIndex = 17;
+            this.label28.Text = "Поля отмеченные * обязательны к заполнению";
+            // 
             // ins_client_form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 325);
+            this.ClientSize = new System.Drawing.Size(481, 416);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.cnl_btn);
             this.Controls.Add(this.ins_btn);
             this.Controls.Add(this.label7);
@@ -221,6 +248,7 @@
             this.Controls.Add(this.tb_pas);
             this.Controls.Add(this.tb_phone);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ins_client_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delivery service";
@@ -248,5 +276,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button ins_btn;
         private System.Windows.Forms.Button cnl_btn;
+        private System.Windows.Forms.Label label28;
     }
 }
