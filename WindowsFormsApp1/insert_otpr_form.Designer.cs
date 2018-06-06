@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.temp_pol = new System.Windows.Forms.ComboBox();
+            this.temp_otpr = new System.Windows.Forms.ComboBox();
+            this.cnl_btn = new System.Windows.Forms.Button();
             this.ins_btn = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -48,16 +51,11 @@
             this.tb_otpr = new System.Windows.Forms.TextBox();
             this.cb_veight = new System.Windows.Forms.ComboBox();
             this.cb_type = new System.Windows.Forms.ComboBox();
-            this.cnl_btn = new System.Windows.Forms.Button();
-            this.temp_otpr = new System.Windows.Forms.ComboBox();
-            this.temp_pol = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.temp_pol);
-            this.groupBox1.Controls.Add(this.temp_otpr);
             this.groupBox1.Controls.Add(this.cnl_btn);
             this.groupBox1.Controls.Add(this.ins_btn);
             this.groupBox1.Controls.Add(this.label12);
@@ -78,6 +76,8 @@
             this.groupBox1.Controls.Add(this.tb_otpr);
             this.groupBox1.Controls.Add(this.cb_veight);
             this.groupBox1.Controls.Add(this.cb_type);
+            this.groupBox1.Controls.Add(this.temp_otpr);
+            this.groupBox1.Controls.Add(this.temp_pol);
             this.groupBox1.Location = new System.Drawing.Point(4, 1);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -86,6 +86,34 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // temp_pol
+            // 
+            this.temp_pol.FormattingEnabled = true;
+            this.temp_pol.Location = new System.Drawing.Point(7, 269);
+            this.temp_pol.Name = "temp_pol";
+            this.temp_pol.Size = new System.Drawing.Size(121, 24);
+            this.temp_pol.TabIndex = 23;
+            this.temp_pol.Visible = false;
+            // 
+            // temp_otpr
+            // 
+            this.temp_otpr.FormattingEnabled = true;
+            this.temp_otpr.Location = new System.Drawing.Point(9, 228);
+            this.temp_otpr.Name = "temp_otpr";
+            this.temp_otpr.Size = new System.Drawing.Size(121, 24);
+            this.temp_otpr.TabIndex = 22;
+            this.temp_otpr.Visible = false;
+            // 
+            // cnl_btn
+            // 
+            this.cnl_btn.Location = new System.Drawing.Point(299, 442);
+            this.cnl_btn.Name = "cnl_btn";
+            this.cnl_btn.Size = new System.Drawing.Size(100, 29);
+            this.cnl_btn.TabIndex = 21;
+            this.cnl_btn.Text = "Отмена";
+            this.cnl_btn.UseVisualStyleBackColor = true;
+            this.cnl_btn.Click += new System.EventHandler(this.button1_Click);
             // 
             // ins_btn
             // 
@@ -253,17 +281,22 @@
             // 
             this.tb_pol.Location = new System.Drawing.Point(201, 55);
             this.tb_pol.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_pol.MaxLength = 12;
             this.tb_pol.Name = "tb_pol";
             this.tb_pol.Size = new System.Drawing.Size(198, 22);
             this.tb_pol.TabIndex = 4;
+            this.tb_pol.TextChanged += new System.EventHandler(this.tb_pol_TextChanged);
+            this.tb_pol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_pol_KeyPress);
             // 
             // tb_otpr
             // 
             this.tb_otpr.Location = new System.Drawing.Point(201, 20);
             this.tb_otpr.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_otpr.MaxLength = 12;
             this.tb_otpr.Name = "tb_otpr";
             this.tb_otpr.Size = new System.Drawing.Size(198, 22);
             this.tb_otpr.TabIndex = 3;
+            this.tb_otpr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_otpr_KeyPress);
             // 
             // cb_veight
             // 
@@ -286,34 +319,6 @@
             this.cb_type.TabIndex = 0;
             this.cb_type.SelectedIndexChanged += new System.EventHandler(this.cb_type_SelectedIndexChanged);
             // 
-            // cnl_btn
-            // 
-            this.cnl_btn.Location = new System.Drawing.Point(299, 442);
-            this.cnl_btn.Name = "cnl_btn";
-            this.cnl_btn.Size = new System.Drawing.Size(100, 29);
-            this.cnl_btn.TabIndex = 21;
-            this.cnl_btn.Text = "Отмена";
-            this.cnl_btn.UseVisualStyleBackColor = true;
-            this.cnl_btn.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // temp_otpr
-            // 
-            this.temp_otpr.FormattingEnabled = true;
-            this.temp_otpr.Location = new System.Drawing.Point(9, 228);
-            this.temp_otpr.Name = "temp_otpr";
-            this.temp_otpr.Size = new System.Drawing.Size(121, 24);
-            this.temp_otpr.TabIndex = 22;
-            this.temp_otpr.Visible = false;
-            // 
-            // temp_pol
-            // 
-            this.temp_pol.FormattingEnabled = true;
-            this.temp_pol.Location = new System.Drawing.Point(7, 269);
-            this.temp_pol.Name = "temp_pol";
-            this.temp_pol.Size = new System.Drawing.Size(121, 24);
-            this.temp_pol.TabIndex = 23;
-            this.temp_pol.Visible = false;
-            // 
             // insert_otpr_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -324,6 +329,7 @@
             this.Name = "insert_otpr_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delivery service";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.insert_otpr_form_FormClosing);
             this.Load += new System.EventHandler(this.insert_otpr_form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

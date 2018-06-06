@@ -643,3 +643,59 @@ values (@code+1, @sender, @receiver, @td, @vk, @po, @pp,GETDATE(),0, 'отправлено
 end
 else RAISERROR ('Совершать отправление может только клиент, предоставивший паспортные данные',11,1)
 go
+create proc insert_content
+@code int,
+@name varchar (512),
+@price real,
+@amount int,
+@weight real
+as
+if (not exists (select * from Содержимое where [Код посылки]=@code and [Наименование товара]=@name))
+insert into Содержимое
+values (@code , @name, @price, @amount, @weight )
+go
+create proc del_content
+@code int,
+@name varchar(512)
+as
+delete from Содержимое
+where [Код посылки]=@code and [Наименование товара]=@name
+go
+create proc change_status
+@code int,
+@stat status
+as
+if @stat='доставлено'
+	UPDATE Отправление
+	SET [Статус]=@stat,
+	[Дата получения]=GETDATE()
+	WHERE [Код посылки] = @code
+else 
+	UPDATE Отправление
+	SET [Статус]=@stat,
+	[Дата получения]=NULL
+	WHERE [Код посылки] = @code
+go
+create proc insert_ref
+@code int,
+@pr varchar (512),
+@resh varchar (512)
+as
+insert into [Отказанное отправление]
+values (@code , GETDATE(), @pr, @resh )
+go
+create proc del_ref
+@code int
+as
+DELETE from [Отказанное отправление]
+where [Код посылки]=@code
+go
+CREATE PROCEDURE Update_ref 
+@code int,
+@pr varchar(512),
+@resh varchar(512)
+AS 
+UPDATE [Отказанное отправление]
+SET Причина=@pr, Решение=@resh
+WHERE [Код посылки]=@code
+GO

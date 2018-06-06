@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Delivery_serviceDataSet" targetNamespace="http://tempuri.org/Delivery_serviceDataSet.xsd" xmlns:mstns="http://tempuri.org/Delivery_serviceDataSet.xsd" xmlns="http://tempuri.org/Delivery_serviceDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Delivery_serviceConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Delivery_serviceConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApp1.Properties.Settings.GlobalReference.Default.Delivery_serviceConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ОтправлениеTableAdapter" GeneratorDataComponentClassName="ОтправлениеTableAdapter" Name="Отправление" UserDataComponentName="ОтправлениеTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Delivery_serviceConnectionString (Settings)" DbObjectName="Delivery_service.dbo.Отправление" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Отправитель, Получатель, Стоимость, Статус FROM dbo.Отправление</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Отправитель" DataSetColumn="Отправитель" />
+              <Mapping SourceColumn="Получатель" DataSetColumn="Получатель" />
+              <Mapping SourceColumn="Стоимость" DataSetColumn="Стоимость" />
+              <Mapping SourceColumn="Статус" DataSetColumn="Статус" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Delivery_serviceDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Delivery_serviceDataSet" msprop:Generator_UserDSName="Delivery_serviceDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Отправление" msprop:Generator_TableClassName="ОтправлениеDataTable" msprop:Generator_TableVarName="tableОтправление" msprop:Generator_TablePropName="Отправление" msprop:Generator_RowDeletingName="ОтправлениеRowDeleting" msprop:Generator_RowChangingName="ОтправлениеRowChanging" msprop:Generator_RowEvHandlerName="ОтправлениеRowChangeEventHandler" msprop:Generator_RowDeletedName="ОтправлениеRowDeleted" msprop:Generator_UserTableName="Отправление" msprop:Generator_RowChangedName="ОтправлениеRowChanged" msprop:Generator_RowEvArgName="ОтправлениеRowChangeEvent" msprop:Generator_RowClassName="ОтправлениеRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Отправитель" msprop:Generator_ColumnVarNameInTable="columnОтправитель" msprop:Generator_ColumnPropNameInRow="Отправитель" msprop:Generator_ColumnPropNameInTable="ОтправительColumn" msprop:Generator_UserColumnName="Отправитель">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Получатель" msprop:Generator_ColumnVarNameInTable="columnПолучатель" msprop:Generator_ColumnPropNameInRow="Получатель" msprop:Generator_ColumnPropNameInTable="ПолучательColumn" msprop:Generator_UserColumnName="Получатель">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Стоимость" msprop:Generator_ColumnVarNameInTable="columnСтоимость" msprop:Generator_ColumnPropNameInRow="Стоимость" msprop:Generator_ColumnPropNameInTable="СтоимостьColumn" msprop:Generator_UserColumnName="Стоимость" type="xs:decimal" />
+              <xs:element name="Статус" msprop:Generator_ColumnVarNameInTable="columnСтатус" msprop:Generator_ColumnPropNameInRow="Статус" msprop:Generator_ColumnPropNameInTable="СтатусColumn" msprop:Generator_UserColumnName="Статус">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

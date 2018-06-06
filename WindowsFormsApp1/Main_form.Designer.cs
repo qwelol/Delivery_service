@@ -32,6 +32,7 @@
             this.operatorPage = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.departurePage = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.refGrid = new System.Windows.Forms.DataGridView();
             this.search_btn = new System.Windows.Forms.Button();
@@ -40,6 +41,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.contentGrid = new System.Windows.Forms.DataGridView();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departureGrid = new System.Windows.Forms.DataGridView();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,10 +130,8 @@
             this.change_pv_btn = new System.Windows.Forms.Button();
             this.del_btn = new System.Windows.Forms.Button();
             this.insert_btn = new System.Windows.Forms.Button();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cb_status = new System.Windows.Forms.ComboBox();
+            this.ch_status_btn = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,6 +192,9 @@
             // 
             // departurePage
             // 
+            this.departurePage.Controls.Add(this.ch_status_btn);
+            this.departurePage.Controls.Add(this.cb_status);
+            this.departurePage.Controls.Add(this.button1);
             this.departurePage.Controls.Add(this.label13);
             this.departurePage.Controls.Add(this.refGrid);
             this.departurePage.Controls.Add(this.search_btn);
@@ -209,6 +215,16 @@
             this.departurePage.Text = "Отправления";
             this.departurePage.UseVisualStyleBackColor = true;
             this.departurePage.Click += new System.EventHandler(this.departurePage_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 726);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(173, 49);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Отчет об отправлениях";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // label13
             // 
@@ -239,6 +255,7 @@
             this.refGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.refGrid.Size = new System.Drawing.Size(795, 99);
             this.refGrid.TabIndex = 9;
+            this.refGrid.Click += new System.EventHandler(this.refGrid_Click);
             // 
             // search_btn
             // 
@@ -253,7 +270,7 @@
             // 
             // delete_btn
             // 
-            this.delete_btn.Location = new System.Drawing.Point(713, 25);
+            this.delete_btn.Location = new System.Drawing.Point(1180, 25);
             this.delete_btn.Margin = new System.Windows.Forms.Padding(4);
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(100, 28);
@@ -264,7 +281,7 @@
             // 
             // create_btn
             // 
-            this.create_btn.Location = new System.Drawing.Point(589, 23);
+            this.create_btn.Location = new System.Drawing.Point(1067, 25);
             this.create_btn.Margin = new System.Windows.Forms.Padding(4);
             this.create_btn.Name = "create_btn";
             this.create_btn.Size = new System.Drawing.Size(100, 28);
@@ -310,9 +327,34 @@
             this.contentGrid.Location = new System.Drawing.Point(19, 398);
             this.contentGrid.Margin = new System.Windows.Forms.Padding(4);
             this.contentGrid.Name = "contentGrid";
+            this.contentGrid.ReadOnly = true;
             this.contentGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.contentGrid.Size = new System.Drawing.Size(794, 154);
             this.contentGrid.TabIndex = 2;
+            // 
+            // Column26
+            // 
+            this.Column26.HeaderText = "Наименование товара";
+            this.Column26.Name = "Column26";
+            this.Column26.Width = 169;
+            // 
+            // Column27
+            // 
+            this.Column27.HeaderText = "Объявленная стоимость";
+            this.Column27.Name = "Column27";
+            this.Column27.Width = 182;
+            // 
+            // Column28
+            // 
+            this.Column28.HeaderText = "Количество";
+            this.Column28.Name = "Column28";
+            this.Column28.Width = 115;
+            // 
+            // Column29
+            // 
+            this.Column29.HeaderText = "Вес";
+            this.Column29.Name = "Column29";
+            this.Column29.Width = 61;
             // 
             // departureGrid
             // 
@@ -678,7 +720,6 @@
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Size = new System.Drawing.Size(132, 22);
             this.tb_phone.TabIndex = 4;
-            this.tb_phone.TextChanged += new System.EventHandler(this.tb_phone_TextChanged);
             this.tb_phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_phone_KeyPress);
             // 
             // tb_fam
@@ -1215,29 +1256,27 @@
             this.insert_btn.UseVisualStyleBackColor = true;
             this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
             // 
-            // Column26
+            // cb_status
             // 
-            this.Column26.HeaderText = "Наименование товара";
-            this.Column26.Name = "Column26";
-            this.Column26.Width = 169;
+            this.cb_status.FormattingEnabled = true;
+            this.cb_status.Items.AddRange(new object[] {
+            "отправлено",
+            "доставлено",
+            "отказано"});
+            this.cb_status.Location = new System.Drawing.Point(967, 398);
+            this.cb_status.Name = "cb_status";
+            this.cb_status.Size = new System.Drawing.Size(249, 24);
+            this.cb_status.TabIndex = 0;
             // 
-            // Column27
+            // ch_status_btn
             // 
-            this.Column27.HeaderText = "Объявленная стоимость";
-            this.Column27.Name = "Column27";
-            this.Column27.Width = 182;
-            // 
-            // Column28
-            // 
-            this.Column28.HeaderText = "Количество";
-            this.Column28.Name = "Column28";
-            this.Column28.Width = 115;
-            // 
-            // Column29
-            // 
-            this.Column29.HeaderText = "Вес";
-            this.Column29.Name = "Column29";
-            this.Column29.Width = 61;
+            this.ch_status_btn.Location = new System.Drawing.Point(1027, 448);
+            this.ch_status_btn.Name = "ch_status_btn";
+            this.ch_status_btn.Size = new System.Drawing.Size(140, 35);
+            this.ch_status_btn.TabIndex = 1;
+            this.ch_status_btn.Text = "Изменить статус";
+            this.ch_status_btn.UseVisualStyleBackColor = true;
+            this.ch_status_btn.Click += new System.EventHandler(this.ch_status_btn_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1248,17 +1287,16 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn2.HeaderText = "Причина";
+            this.dataGridViewTextBoxColumn2.MaxInputLength = 512;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 95;
+            this.dataGridViewTextBoxColumn2.Width = 205;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Решение";
+            this.dataGridViewTextBoxColumn3.MaxInputLength = 512;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 205;
             // 
             // Main_form
@@ -1405,6 +1443,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ch_status_btn;
+        private System.Windows.Forms.ComboBox cb_status;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

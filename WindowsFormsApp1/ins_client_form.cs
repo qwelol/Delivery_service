@@ -144,5 +144,10 @@ namespace WindowsFormsApp1
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ins_client_form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            con.Close();
+        }
     }
 }

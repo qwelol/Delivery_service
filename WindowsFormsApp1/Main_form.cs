@@ -82,33 +82,6 @@ namespace WindowsFormsApp1
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //switch (cb_type.SelectedIndex)
-            //{
-            //    case 0:
-            //        {
-            //            cb_po.Enabled = false;
-            //            cb_pp.Enabled = false;
-            //            break;
-            //        }
-            //    case 1:
-            //        {
-            //            cb_po.Enabled = true;
-            //            cb_pp.Enabled = false;
-            //            break;
-            //        }
-            //    case 2:
-            //        {
-            //            cb_po.Enabled = false;
-            //            cb_pp.Enabled = true;
-            //            break;
-            //        }
-            //    case 3:
-            //        {
-            //            cb_po.Enabled = true;
-            //            cb_pp.Enabled = true;
-            //            break;
-            //        }
-            //}
         }
 
         private void comment_Click(object sender, EventArgs e)
@@ -635,11 +608,6 @@ namespace WindowsFormsApp1
             form.ShowDialog();
         }
 
-        private void tb_phone_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -763,6 +731,16 @@ namespace WindowsFormsApp1
                     reader["Комментарий"].ToString()
                     );
                 }
+                if (departureGrid.RowCount > 0)
+                {
+                    if (departureGrid[9, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString() == "отправлено")
+                    {
+                        cb_status.SelectedIndex = 0;
+                    }
+                    else if (departureGrid[9, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString() == "доставлено")
+                        cb_status.SelectedIndex = 1;
+                    else cb_status.SelectedIndex = 2;
+                }
                 reader.Close();
             }
             else
@@ -879,6 +857,68 @@ namespace WindowsFormsApp1
             insert_otpr_form form = new insert_otpr_form();
             form.Owner = this;
             form.ShowDialog();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            report_form form = new report_form();
+            form.Owner = this;
+            form.ShowDialog();
+        }
+
+        private void ch_status_btn_Click(object sender, EventArgs e)
+        {
+            if (departureGrid.RowCount > 0)
+            {
+                if (cb_status.Text.ToString() != "отказано")
+                {
+                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                    comm.CommandText = "change_status";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@code", SqlDbType.Int);
+                    comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+                    comm.Parameters.Add("@stat", SqlDbType.VarChar);
+                    comm.Parameters["@stat"].Value = cb_status.Text.ToString();
+                    comm.ExecuteNonQuery();
+
+                    comm.CommandText = "del_ref";
+                    comm.Parameters.Clear();
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@code", SqlDbType.Int);
+                    comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    refresh_dep();
+                    refresh_content();
+                    refresh_ref();
+                }
+                else
+                {
+                    int a = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+                    insert_ref_form form = new insert_ref_form(a);
+                    form.Owner = this;
+                    form.ShowDialog();
+                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                    comm.CommandText = "change_status";
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@code", SqlDbType.Int);
+                    comm.Parameters["@code"].Value = int.Parse(departureGrid[0, int.Parse(departureGrid.CurrentRow.Index.ToString())].Value.ToString());
+                    comm.Parameters.Add("@stat", SqlDbType.VarChar);
+                    comm.Parameters["@stat"].Value = cb_status.Text.ToString();
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Успешно изменено", "Изменение",
+                    MessageBoxButtons.OK, MessageBoxIcon.None);
+                    refresh_dep();
+                    refresh_content();
+                    refresh_ref();
+                }
+            }
+        }
+
+        private void refGrid_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

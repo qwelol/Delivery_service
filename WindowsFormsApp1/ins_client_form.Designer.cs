@@ -50,7 +50,7 @@
             // tb_phone
             // 
             this.tb_phone.Location = new System.Drawing.Point(333, 15);
-            this.tb_phone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_phone.Margin = new System.Windows.Forms.Padding(4);
             this.tb_phone.MaxLength = 12;
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Size = new System.Drawing.Size(132, 22);
@@ -60,7 +60,7 @@
             // tb_pas
             // 
             this.tb_pas.Location = new System.Drawing.Point(333, 59);
-            this.tb_pas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_pas.Margin = new System.Windows.Forms.Padding(4);
             this.tb_pas.MaxLength = 10;
             this.tb_pas.Name = "tb_pas";
             this.tb_pas.Size = new System.Drawing.Size(132, 22);
@@ -70,7 +70,7 @@
             // tb_fam
             // 
             this.tb_fam.Location = new System.Drawing.Point(333, 103);
-            this.tb_fam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_fam.Margin = new System.Windows.Forms.Padding(4);
             this.tb_fam.MaxLength = 64;
             this.tb_fam.Name = "tb_fam";
             this.tb_fam.Size = new System.Drawing.Size(132, 22);
@@ -81,7 +81,7 @@
             // tb_name
             // 
             this.tb_name.Location = new System.Drawing.Point(333, 148);
-            this.tb_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_name.Margin = new System.Windows.Forms.Padding(4);
             this.tb_name.MaxLength = 64;
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(132, 22);
@@ -91,7 +91,7 @@
             // tb_surname
             // 
             this.tb_surname.Location = new System.Drawing.Point(333, 192);
-            this.tb_surname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_surname.Margin = new System.Windows.Forms.Padding(4);
             this.tb_surname.MaxLength = 64;
             this.tb_surname.Name = "tb_surname";
             this.tb_surname.Size = new System.Drawing.Size(132, 22);
@@ -101,7 +101,7 @@
             // tb_mail
             // 
             this.tb_mail.Location = new System.Drawing.Point(333, 236);
-            this.tb_mail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_mail.Margin = new System.Windows.Forms.Padding(4);
             this.tb_mail.MaxLength = 32;
             this.tb_mail.Name = "tb_mail";
             this.tb_mail.Size = new System.Drawing.Size(132, 22);
@@ -110,7 +110,7 @@
             // tb_adr
             // 
             this.tb_adr.Location = new System.Drawing.Point(140, 281);
-            this.tb_adr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_adr.Margin = new System.Windows.Forms.Padding(4);
             this.tb_adr.MaxLength = 512;
             this.tb_adr.Multiline = true;
             this.tb_adr.Name = "tb_adr";
@@ -197,7 +197,7 @@
             // ins_btn
             // 
             this.ins_btn.Location = new System.Drawing.Point(37, 374);
-            this.ins_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ins_btn.Margin = new System.Windows.Forms.Padding(4);
             this.ins_btn.Name = "ins_btn";
             this.ins_btn.Size = new System.Drawing.Size(100, 28);
             this.ins_btn.TabIndex = 14;
@@ -208,7 +208,7 @@
             // cnl_btn
             // 
             this.cnl_btn.Location = new System.Drawing.Point(365, 374);
-            this.cnl_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cnl_btn.Margin = new System.Windows.Forms.Padding(4);
             this.cnl_btn.Name = "cnl_btn";
             this.cnl_btn.Size = new System.Drawing.Size(100, 28);
             this.cnl_btn.TabIndex = 15;
@@ -248,10 +248,11 @@
             this.Controls.Add(this.tb_pas);
             this.Controls.Add(this.tb_phone);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ins_client_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delivery service";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ins_client_form_FormClosing);
             this.Load += new System.EventHandler(this.ins_client_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

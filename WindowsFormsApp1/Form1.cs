@@ -80,5 +80,10 @@ namespace WindowsFormsApp1
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void insert_city_form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            con.Close();
+        }
     }
 }

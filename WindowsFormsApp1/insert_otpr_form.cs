@@ -140,81 +140,101 @@ namespace WindowsFormsApp1
         }
 
         private void ins_btn_Click(object sender, EventArgs e)
-        {
-            string a;
-            if ((tb_otpr.Text[0] == '+') && (tb_otpr.Text[1] == '7') && (tb_otpr.Text.Length == 12)
-                && (tb_pol.Text[0] == '+') && (tb_pol.Text[1] == '7') && (tb_pol.Text.Length == 12)
-                )
+        {if (tb_otpr.Text.ToString() != string.Empty && tb_pol.Text.ToString() != string.Empty)
             {
-                try
+                if ((tb_otpr.Text[0] == '+') && (tb_otpr.Text[1] == '7') && (tb_otpr.Text.Length == 12)
+                    && (tb_pol.Text[0] == '+') && (tb_pol.Text[1] == '7') && (tb_pol.Text.Length == 12)
+                    )
                 {
-                    SqlCommand comm = con.CreateCommand(); //заполнение грида 
-                    comm.CommandText = "insert_otpr";
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.Add("@sender", SqlDbType.VarChar);
-                    comm.Parameters["@sender"].Value = tb_otpr.Text.ToString();
-                    comm.Parameters.Add("@receiver", SqlDbType.VarChar);
-                    comm.Parameters["@receiver"].Value = tb_pol.Text.ToString();
-                    comm.Parameters.Add("@td", SqlDbType.TinyInt);
-                    comm.Parameters["@td"].Value = cb_type.SelectedIndex + 1;
-                    comm.Parameters.Add("@vk", SqlDbType.TinyInt);
-                    comm.Parameters["@vk"].Value = cb_veight.SelectedIndex + 1;
-                    if (cb_po.Enabled == false)
+                    try
                     {
-                        SqlCommand comm1 = con.CreateCommand();
-                        comm1.Parameters.Clear();
-                        comm1.CommandText = "Show_main_pv";
-                        comm1.CommandType = CommandType.StoredProcedure;
-                        comm1.Parameters.Add("@city", SqlDbType.VarChar);
-                        comm1.Parameters["@city"].Value = cb_go.Text;
-                        SqlDataReader reader1 = comm1.ExecuteReader();
-                        temp_otpr.Items.Clear();
-                        while (reader1.Read())
+                        try
                         {
-                            temp_otpr.Items.Add(reader1["Код пункта"].ToString());
+                            SqlCommand comm = con.CreateCommand(); //заполнение грида 
+                            comm.CommandText = "insert_otpr";
+                            comm.CommandType = CommandType.StoredProcedure;
+                            comm.Parameters.Add("@sender", SqlDbType.VarChar);
+                            comm.Parameters["@sender"].Value = tb_otpr.Text.ToString();
+                            comm.Parameters.Add("@receiver", SqlDbType.VarChar);
+                            comm.Parameters["@receiver"].Value = tb_pol.Text.ToString();
+                            comm.Parameters.Add("@td", SqlDbType.TinyInt);
+                            comm.Parameters["@td"].Value = cb_type.SelectedIndex + 1;
+                            comm.Parameters.Add("@vk", SqlDbType.TinyInt);
+                            comm.Parameters["@vk"].Value = cb_veight.SelectedIndex + 1;
+                            if (cb_po.Enabled == false)
+                            {
+                                SqlCommand comm1 = con.CreateCommand();
+                                comm1.Parameters.Clear();
+                                comm1.CommandText = "Show_main_pv";
+                                comm1.CommandType = CommandType.StoredProcedure;
+                                comm1.Parameters.Add("@city", SqlDbType.VarChar);
+                                comm1.Parameters["@city"].Value = cb_go.Text;
+                                SqlDataReader reader1 = comm1.ExecuteReader();
+                                temp_otpr.Items.Clear();
+                                while (reader1.Read())
+                                {
+                                    temp_otpr.Items.Add(reader1["Код пункта"].ToString());
+                                }
+                                reader1.Close();
+                                if (temp_otpr.Items.Count != 0)
+                                    temp_otpr.SelectedIndex = 0;
+                                else return;
+                            }
+                            comm.Parameters.Add("@po", SqlDbType.Int);
+                            comm.Parameters["@po"].Value = int.Parse(temp_otpr.Text.ToString());
+                            if (cb_pp.Enabled == false)
+                            {
+                                SqlCommand comm1 = con.CreateCommand();
+                                comm1.Parameters.Clear();
+                                comm1.CommandText = "Show_main_pv";
+                                comm1.CommandType = CommandType.StoredProcedure;
+                                comm1.Parameters.Add("@city", SqlDbType.VarChar);
+                                comm1.Parameters["@city"].Value = cb_gp.Text;
+                                SqlDataReader reader1 = comm1.ExecuteReader();
+                                temp_pol.Items.Clear();
+                                while (reader1.Read())
+                                {
+                                    temp_pol.Items.Add(reader1["Код пункта"].ToString());
+                                }
+                                reader1.Close();
+                                if (temp_pol.Items.Count != 0)
+                                    temp_pol.SelectedIndex = 0;
+                                else return;
+                            }
+                            comm.Parameters.Add("@pp", SqlDbType.Int);
+                            comm.Parameters["@pp"].Value = int.Parse(temp_pol.Text.ToString());
+                            comm.Parameters.Add("@comm", SqlDbType.VarChar);
+                            comm.Parameters["@comm"].Value = tb_comm.Text.ToString();
+                            comm.ExecuteNonQuery();
+                            MessageBox.Show("Успешно добавлено", "Добавление",
+                            MessageBoxButtons.OK, MessageBoxIcon.None);
+                            insert_content_form form = new insert_content_form();
+                            form.Owner = this;
+                            form.ShowDialog();
+                            con.Close();
+                            this.Close();
                         }
-                        reader1.Close();
-                        temp_otpr.SelectedIndex = 0;
-                        MessageBox.Show(temp_otpr.Text.ToString(), "Добавление",
-                        MessageBoxButtons.OK, MessageBoxIcon.None);
-                    }
-                    comm.Parameters.Add("@po", SqlDbType.Int);
-                    comm.Parameters["@po"].Value = int.Parse(temp_otpr.Text.ToString());
-                    if (cb_pp.Enabled == false)
+                        catch (System.FormatException)
+                        {
+                            MessageBox.Show("Такого клиента нет в базе", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                                            }
+                    catch (System.Data.SqlClient.SqlException)
                     {
-                        SqlCommand comm1 = con.CreateCommand();
-                        comm1.Parameters.Clear();
-                        comm1.CommandText = "Show_main_pv";
-                        comm1.CommandType = CommandType.StoredProcedure;
-                        comm1.Parameters.Add("@city", SqlDbType.VarChar);
-                        comm1.Parameters["@city"].Value = cb_gp.Text;
-                        SqlDataReader reader1 = comm1.ExecuteReader();
-                        temp_pol.Items.Clear();
-                        while (reader1.Read())
-                        {
-                            temp_pol.Items.Add(reader1["Код пункта"].ToString());
-                        }
-                        reader1.Close();
-                        temp_pol.SelectedIndex = 0;
+                        MessageBox.Show("Совершать отправления может клиент, указавший свои паспортные данные", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    comm.Parameters.Add("@pp", SqlDbType.Int);
-                    comm.Parameters["@pp"].Value = int.Parse(temp_pol.Text.ToString());
-                    comm.Parameters.Add("@comm", SqlDbType.VarChar);
-                    comm.Parameters["@comm"].Value = tb_comm.Text.ToString();
-                    comm.ExecuteNonQuery();
-                    MessageBox.Show("Успешно добавлено", "Добавление",
-                    MessageBoxButtons.OK, MessageBoxIcon.None);
-                    this.Close();
                 }
-                catch (System.Data.SqlClient.SqlException)
+                else
                 {
-                    MessageBox.Show("Совершать отправления может клиент, указавший свои паспортные данные", "Ошибка",
+                    MessageBox.Show("Неккоректное значение номера мобильного телефона", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Неккоректное значение номера мобильного телефона", "Ошибка",
+                MessageBox.Show("Поле не может быть пустым", "Ошибка",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -228,5 +248,35 @@ namespace WindowsFormsApp1
         {
             temp_pol.SelectedIndex = cb_pp.SelectedIndex;
         }
+
+        private void tb_otpr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 43)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_pol_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_pol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 43)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void insert_otpr_form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            con.Close();
+        }
+
+
     }
 }
